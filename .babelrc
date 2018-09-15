@@ -1,0 +1,21 @@
+{
+  "presets": [
+    [
+      "env", {
+      "debug": true,
+      "useBuiltIns": true,
+      "targets": {
+        "browsers": ["last 2 versions", "safari >= 7","ie >= 7"],
+        "node": "current"
+      }
+    }
+    ],
+    "react","env"
+  ],
+  "plugins": ["transform-decorators-legacy",["import",{"libraryName":"antd"}]],
+  "env":{
+    "development":{
+      "presets":["react-hmre"]  // babel-preset-react-hmre：让Babel知道HMR（热替换），涉及到了webpack.config.js里loader为babel（也就是js、jsx使用babel-loader地方）的配置
+    }
+  }
+}
