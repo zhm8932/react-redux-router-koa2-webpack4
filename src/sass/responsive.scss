@@ -6,18 +6,11 @@
 }
 @media only  screen and (min-width: 769px) and (max-width: 1439px){
   .wrapper{ width:980px;}
-  .introduce-right{
-    img{width: 80%}
-  }
 }
 
 @media only screen and (max-width: 768px){
-  .logo{display: none;}
   .wrapper{width: 100%;box-sizing: border-box;}
   .fixed{margin: 0px;left: 0px;}
-  .nav{
-    text-align: left;top: auto;
-  }
 }
 
 @media only screen and (width: 320px){

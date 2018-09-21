@@ -8,8 +8,8 @@ const logger = require('koa-logger')
 const favicon = require('koa-favicon');
 const path = require('path')
 
-const index = require('./servers/routes/index')
-const users = require('./servers/routes/users')
+const index = require('./server/routes/index')
+const users = require('./server/routes/users')
 
 // error handler
 onerror(app)
@@ -24,7 +24,7 @@ console.log("__dirname:",__dirname)
 app.use(require('koa-static')(__dirname + '/public'))
 app.use(favicon(__dirname + '/public/images/favicon.ico'))
 
-app.use(views(__dirname + '/servers' +'/views', {
+app.use(views(__dirname + '/server' +'/views', {
   extension: 'pug'
 }))
 

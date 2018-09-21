@@ -2,7 +2,8 @@
  * Created by 91608 on 2017/9/17.
  */
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
@@ -16,17 +17,11 @@ module.exports = merge(webpackConfig,{
 		rules:[
 			{
 				test:/\.scss$/,
-				use:ExtractTextPlugin.extract({  //开发环境分离css时，热更新无效 使用css-hot-loader
-					fallback:'style-loader',
-					use: [{
-						loader: "css-loader",
-						options: {
-							minimize: true // css压缩
-						}
-					}, {
-						loader: "sass-loader"
-					}],
-				}),
+				use:[
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					'sass-loader'
+				],
 			},
 		]
 	},
@@ -36,25 +31,8 @@ module.exports = merge(webpackConfig,{
 			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
 		}),
 		// 若要按需加载 CSS 则请注释掉该行
-		new ExtractTextPlugin('css/[name].css',{
-			allChunks : true
-		}),
+		new MiniCssExtractPlugin('css/[name].css'),
 		// new webpack.NoErrorsPlugin(),	//不显示错误插件
-		new webpack.optimize.UglifyJsPlugin({
-			mangle:{ //不混淆压缩
-				except:['$','exports','require'],
-				screw_ie8: true,
-				keep_fnames: true
-			},
-			compress:{
-				warnings:false,
-				screw_ie8: true,
-				drop_debugger: true,
-				drop_console: true
-			},
-			beautify: false,
-			comments: false
-		}),
 		new CleanWebpackPlugin(
 			['*.zip','public/js','public/css'],　 //匹配删除的文件
 			{
@@ -70,7 +48,7 @@ module.exports = merge(webpackConfig,{
 				to:path.join(PUBLIC_PATH,'images'),
 			},
 			{
-				from: path.join(SRC_PATH,'js/api'),
+				from: path.join(SRC_PATH,'api'),
 				to:path.join(PUBLIC_PATH,'api'),
 			}
 

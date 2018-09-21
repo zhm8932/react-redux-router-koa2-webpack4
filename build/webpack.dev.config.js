@@ -5,15 +5,31 @@ const path = require('path');
 const webpack = require('webpack');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const merge = require('webpack-merge');
 const webpackConfig = require('./webpack.config');
 let {ROOT,PUBLIC_PATH,publicPath,PORT} = require('./commonPath');
+const devMode = process.env.NODE_ENV !== 'production'
 module.exports = merge(webpackConfig,{
 	mode: 'development', // development
 	module: {
 		rules:[
+
 			{
 				test:/\.scss$/,
+				use:[
+					'css-hot-loader',
+					{
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							publicPath: PUBLIC_PATH+'/css'
+						}
+					},
+					// 'style-loader',
+					'css-loader',
+					'sass-loader'
+				]
+				/*test:/\.scss$/,
 				use:['css-hot-loader'].concat(ExtractTextPlugin.extract({  //开发环境分离css时，热更新无效
 					fallback:'style-loader',
 					use: [{
@@ -21,30 +37,24 @@ module.exports = merge(webpackConfig,{
 					}, {
 						loader: "sass-loader"
 					}],
-				})),
+				})),*/
 			},
 		]
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(), // 启用 HMR
 		new webpack.NoEmitOnErrorsPlugin(),  //编译出现错误时,跳过该阶段
-		new ExtractTextPlugin('css/[name].css',{
+		new MiniCssExtractPlugin('css/[name].css'),
+		/*new ExtractTextPlugin('css/[name].css',{
 			allChunks : true
-		}),
+		}),*/
 	],
 	devServer:{
 		proxy:{
-			'*':'http://localhost:3014',
+			'*':'http://localhost:3016',
 		},
 		contentBase: [PUBLIC_PATH],        //默认webpack-dev-server会为根文件夹提供本地服务器，如果想为另外一个目录下的文件提供本地服务器，应该在这里设置其所在目录，告诉服务器从哪里提供内容
 		inline:true,    //设置为true，当源文件改变时会自动刷新页面
-		stats: {
-			colors: true,
-			modules: false,
-			children: false,
-			chunks: false,
-			chunkModules: false
-		},  //设置为true，使终端输出的文件为彩色的
 		hot:true,       // 告诉 dev-server 我们在使用 HMR 启用 webpack 的模块热替换特性
 		port:PORT,      //  port:默认为8080
 		compress: true, //启用gzip 压缩

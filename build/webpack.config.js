@@ -47,7 +47,7 @@ module.exports = {
 	resolve: {
 		extensions: ['.js','.jsx','.json','.scss','.jade','.less'],
 		modules: [
-		    path.join(SRC_PATH, "js"),
+		    path.join(SRC_PATH),
 		   "node_modules"
 		],
 		alias:{
@@ -93,8 +93,8 @@ module.exports = {
 
 			},
 			{
-				test:/\.jade/,
-				use: 'jade-loader',
+				test:/\.pug/,
+				use: 'pug-loader',
 				exclude:/node_modules/,
 				include:/views/
 			},
@@ -106,6 +106,14 @@ module.exports = {
 					loader: "css-loader"
 				}, {
 					loader: "less-loader"
+				}]
+			},
+			{
+				test: /\.css/,
+				use: [{
+					loader: "style-loader"
+				}, {
+					loader: "css-loader"
 				}]
 			},
 			{
@@ -150,14 +158,6 @@ module.exports = {
 					maxInitialRequests: 5,
 					minSize: 0,
 					priority:1
-				},
-				styles: {
-					name: 'styles',
-					test: /\.(scss|css)$/,
-					chunks: 'all',
-					minChunks: 1,
-					reuseExistingChunk: true,
-					enforce: true
 				}
 			}
 		}
