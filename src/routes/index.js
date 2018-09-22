@@ -1,5 +1,6 @@
 import React from "react";
 import Bundle from '../utils/Bundle';
+import renderRoutes from './renderRoutes';
 import {
 	BrowserRouter as Router,
 	Route,
@@ -65,7 +66,7 @@ const Routes = ()=>(
 		</Switch>
 	</div>
 )*/
-const RouteWrapper = ()=>(
+/*const RouteWrapper = ()=>(
 	<Router>
 		<React.Fragment>
 			<Route children={({ match, ...rest }) => (
@@ -75,6 +76,11 @@ const RouteWrapper = ()=>(
 			)}/>
 
 		</React.Fragment>
+	</Router>
+)*/
+const RouteWrapper = ()=>(
+	<Router>
+		{renderRoutes(routes,{})}
 	</Router>
 )
 

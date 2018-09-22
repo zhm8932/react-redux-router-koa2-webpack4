@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react'
 import { Icon ,Button} from 'antd';
+import { Link} from 'react-router-dom';
 // import RightContent from './RightContent'
 
 export default class GlobalHeader extends PureComponent{
@@ -10,7 +11,9 @@ export default class GlobalHeader extends PureComponent{
 		return(
 			<div className="header">
 				头部
-				{/*<Button type="primary">Here is a button</Button>*/}
+				<div className="header-right">
+					<Link exact to='/login'>登陆</Link>
+				</div>
 			</div>
 		)
 	}

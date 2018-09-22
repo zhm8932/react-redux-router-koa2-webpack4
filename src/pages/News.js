@@ -4,7 +4,7 @@ import { Button } from 'antd';
 const News =()=>(
 	<div className="wrapper home">
 		<h1>企业动态！</h1>
-		<p>新闻中心77777777</p>
+		<p>新闻中心77777777888</p>
 
 		<Button type="primary">Primary</Button>
 		<Button>Default</Button>

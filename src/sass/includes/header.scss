@@ -6,6 +6,9 @@
 
 .header{
   position: relative;background-color: $color-gray-f6;min-height: 50px;
+  .header-right{
+    text-align: right;padding: 0 1rem;transform: translateY(-50%);position: relative;top: 50%;
+  }
 }
 .nav{
   width: 700px;text-align: right;
@@ -17,33 +20,5 @@
       color: $color-orange-e6a;border-bottom:2px solid $color-orange-e6a;
       transition: color 0.5s;
     }
-  }
-}
-.menu-root{
-  overflow-y: auto;
-  height: calc(100% - 60px);
-  >li{line-height: 40px;}
-  li,a{
-    color: rgba(255, 255, 255, 0.65);
-    &:hover{color: $white;}
-  }
-  .submenu{
-    ul{
-      //&:not(:first-child){display: none}
-    }
-  }
-  .submenu-title{
-    padding: 0 20px;display: block;
-    .iconfont{margin-right: 5px;}
-  }
-  .menu-item{
-    padding-left: 40px;
-  }
-  .menu-sub{
-    background-color: #000c17;
-  }
-  .menu-hide{display: none;}
-  .menu-item-selected{
-    background-color: $color-blue-4c7;
   }
 }

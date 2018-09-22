@@ -1,0 +1,11 @@
+@import "../../sass/includes/settings";
+
+.login{
+  width: 500px;margin: 0 auto;
+  .panel-header{text-align: center;font-size: 1.6rem;}
+  li{
+    line-height: 30px;
+    padding: 20px 0;border-bottom: 1px solid $color-gray-c;margin-bottom: 2rem;
+    label{width: 60px;display: inline-block;margin-right: 20px;float: left;}
+  }
+}
