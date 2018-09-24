@@ -9,7 +9,7 @@ export default class GlobalHeader extends PureComponent{
 	}
 	render(){
 		return(
-			<div className="header">
+			<div className="header layout-header">
 				头部
 				<div className="header-right">
 					<Link exact to='/login'>登陆</Link>

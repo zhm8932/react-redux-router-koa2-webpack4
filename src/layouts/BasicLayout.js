@@ -55,7 +55,7 @@ class BasicLayout extends React.PureComponent{
 				/>
 				<section className="layout">
 					<GlobalHeader/>
-					<div className="main">
+					<div className="layout-content">
 						{children}
 					</div>
 					<Footer {...this.props}/>

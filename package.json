@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "antd": "3.8.4",
+    "antd": "3.9.3",
     "archiver": "^3.0.0",
     "async": "^2.6.1",
     "bizcharts": "^3.2.2",
@@ -34,6 +34,7 @@
     "koa-views": "^5.2.1",
     "log4js": "^3.0.5",
     "moment": "^2.22.2",
+    "omit.js": "^1.0.0",
     "path-to-regexp": "^2.4.0",
     "prop-types": "^15.6.2",
     "pug": "^2.0.0-rc.1",

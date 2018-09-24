@@ -3,11 +3,11 @@ import classNames from 'classnames';
 import styles from './index.scss';
 
 const GlobalFooter = ({ className, links, copyright }) => {
-  const clsString = classNames(styles.globalFooter, className);
+  const clsString = classNames('global-footer', className);
   return (
     <div className={clsString}>
       {links && (
-        <div className={styles.links}>
+        <div className='links'>
           {links.map(link => (
             <a
               key={link.key}
@@ -20,7 +20,7 @@ const GlobalFooter = ({ className, links, copyright }) => {
           ))}
         </div>
       )}
-      {copyright && <div className={styles.copyright}>{copyright}</div>}
+      {copyright && <div className='copyright'>{copyright}</div>}
     </div>
   );
 };

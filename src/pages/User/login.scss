@@ -1,5 +1,11 @@
 @import "../../sass/includes/settings";
 
+.header{
+  background: none;text-align: center;
+  .logo{margin: 0 auto}
+}
+.top{padding-top: 20px;}
+.desc{text-align: center;}
 .login{
   width: 500px;margin: 0 auto;
   .panel-header{text-align: center;font-size: 1.6rem;}

@@ -18,9 +18,12 @@ class UserLayout extends React.PureComponent{
 				<div className="content">
 					<div className="top">
 						<div className="header">
-							<Link to='/'>
-								<img alt="logo" className="logo" src={logo} />
-							</Link>
+							<div className="logo">
+								<Link to='/'>
+									logo
+								</Link>
+							</div>
+
 						</div>
 						<div className="desc">Ant Design 是西湖区最具影响力的 Web 设计规范</div>
 					</div>

@@ -6,6 +6,7 @@ const path = require('path');
 const {ROOT,PUBLIC_PATH} = require('./commonPath');
 
 module.exports = {
+	mode: 'development', // development
 	entry:{
 		// vendors:['jquery','react','react-dom'],
 		vendors:['react','react-dom'],

@@ -22,7 +22,9 @@ export default class SiderMenu extends PureComponent{
 		const defaultProps = collapsed ? {} : { openKeys }
 		return (
 			<div className="header layout-sider">
-				<Link to='/' title="首页" className="logo">首页</Link>
+				<div className="logo">
+					<Link to='/' title="首页">首页</Link>
+				</div>
 				<BaseMenu
 					{...this.props}
 					handleOpenChange = {this.handleOpenChange}
