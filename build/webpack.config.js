@@ -100,13 +100,28 @@ module.exports = {
 			},
 			{
 				test: /\.less$/,
-				use: [{
-					loader: "style-loader"
-				}, {
-					loader: "css-loader"
-				}, {
-					loader: "less-loader"
-				}]
+				use: [
+					{loader: "style-loader"},
+					{loader: "css-loader"},
+					{
+						loader: "postcss-loader",
+						options: {
+							plugins: [
+								require('autoprefixer')({
+									browsers: ['last 5 version']
+								})
+							]
+						}
+					},
+					{
+						loader: "less-loader",
+						options: {
+							javascriptEnabled: true
+						}
+					}
+				],
+				// 切记这个地方一定要引入antd，文档上没有写入但是一定要因引进去，切记切记
+				include: [/antd/]
 			},
 			{
 				test: /\.css/,

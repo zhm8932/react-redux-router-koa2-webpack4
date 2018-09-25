@@ -2,9 +2,14 @@ import React,{ PureComponent } from 'react';
 import {Link, NavLink} from "react-router-dom";
 
 class HeaderView extends PureComponent{
-	state = {
-		visible:true
-	};
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			visible:true
+		};
+	}
+
 	static getDerivedStateFromProps(props,state){
 		if(!props.autoHideHeader&&!state.visible){
 			return{

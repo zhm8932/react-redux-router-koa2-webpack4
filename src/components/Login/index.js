@@ -44,7 +44,7 @@ class Login extends Component {
 		const { tabs } = this.state;
 		const { form } = this.props;
 		return {
-			tabUtil: {
+			/*tabUtil: {
 				addTab: id => {
 					this.setState({
 						tabs: [...tabs, id],
@@ -55,7 +55,7 @@ class Login extends Component {
 						tabs: tabs.filter(currentId => currentId !== id),
 					});
 				},
-			},
+			},*/
 			form,
 			updateActive: activeItem => {
 				const { type, active } = this.state;
@@ -97,7 +97,6 @@ class Login extends Component {
 				otherChildren.push(item);
 			}
 		});
-		console.log("state:",this.state)
 		return (
 			<LoginContext.Provider value={this.getContext()}>
 				<div className={classNames(className, styles.login)}>

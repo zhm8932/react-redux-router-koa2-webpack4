@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
 export default class Bundle extends React.Component {
-
-	state = {
-		// short for "module" but that's a keyword in js, so "mod"
-		mod: null
+	constructor(props){
+		super(props);
+		this.state = {
+			mod: null
+		}
 	}
-
 	componentWillMount() {
 		this.load(this.props)
 	}

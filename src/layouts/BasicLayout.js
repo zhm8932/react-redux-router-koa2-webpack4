@@ -14,9 +14,9 @@ import Context from './MenuContext';
 class BasicLayout extends React.PureComponent{
 	constructor(props){
 		super(props)
-	}
-	state = {
-		rendering:true
+		this.state = {
+			rendering:true
+		}
 	}
 	getContext(){
 		const  {location} = this.props
