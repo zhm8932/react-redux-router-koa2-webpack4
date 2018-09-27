@@ -20,6 +20,8 @@ class WrapFormItem extends Component {
 
 	componentDidMount() {
 		const { updateActive, name } = this.props;
+		console.log("namename:",name)
+		console.log("this.props:",this.props)
 		if (updateActive) {
 			updateActive(name);
 		}
@@ -92,6 +94,7 @@ class WrapFormItem extends Component {
 		const options = this.getFormItemOptions(this.props);
 
 		const otherProps = restProps || {};
+		console.log("typetype:",type)
 		if (type === 'Captcha') {
 			const inputProps = omit(otherProps, ['onGetCaptcha', 'countDown']);
 			return (
@@ -125,20 +128,26 @@ class WrapFormItem extends Component {
 const LoginItem = {};
 Object.keys(ItemMap).forEach(key => {
 	const item = ItemMap[key];
-	LoginItem[key] = props => (
-		<LoginContext.Consumer>
-			{context => (
-				<WrapFormItem
-					customprops={item.props}
-					{...props}
-					rules={item.rules}
-					type={key}
-					updateActive={context.updateActive}
-					form={context.form}
-				/>
-			)}
-		</LoginContext.Consumer>
-	);
+	console.log("key:",key)
+	LoginItem[key] = props => {
+		console.log("props：",props)
+		return (
+			<LoginContext.Consumer>
+				{context => (
+					<WrapFormItem
+						customprops={item.props}
+						{...props}
+						rules={item.rules}
+						type={key}
+						updateActive={context.updateActive}
+						form={context.form}
+					/>
+				)}
+			</LoginContext.Consumer>
+		)
+	};
 });
+
+console.log("LoginItem:",LoginItem)
 
 export default LoginItem;

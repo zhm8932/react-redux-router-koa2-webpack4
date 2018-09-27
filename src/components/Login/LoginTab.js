@@ -19,20 +19,20 @@ class LoginTab extends Component {
 	}
 
 	componentDidMount() {
-		// const { tabUtil } = this.props;
-		// tabUtil.addTab(this.uniqueId);
+		const { tabUtil } = this.props;
+		tabUtil.addTab(this.uniqueId);
+
 	}
 
 	render() {
 		const { children } = this.props;
-		console.log("children:",children)
 		return <TabPane {...this.props}>{children}</TabPane>;
 	}
 }
 
 const wrapContext = props => (
 	<LoginContext.Consumer>
-		{value => <LoginTab  {...props} />}
+		{value => <LoginTab tabUtil={value.tabUtil} {...props} />}
 	</LoginContext.Consumer>
 );
 

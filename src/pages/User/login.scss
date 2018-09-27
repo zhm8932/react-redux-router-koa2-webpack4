@@ -7,11 +7,20 @@
 .top{padding-top: 20px;}
 .desc{text-align: center;}
 .login{
-  width: 500px;margin: 0 auto;
+  width:368px;margin: 0 auto;
   .panel-header{text-align: center;font-size: 1.6rem;}
+  .ant-tabs-bar{text-align: center;border: none;}
   li{
     line-height: 30px;
     padding: 20px 0;border-bottom: 1px solid $color-gray-c;margin-bottom: 2rem;
     label{width: 60px;display: inline-block;margin-right: 20px;float: left;}
+  }
+  .ant-form-item-control{
+    .ant-btn-primary{display: block;width: 100%;margin-top: 24px;}
+  }
+  .other{
+    .anticon{font-size: 24px;color: #c0c2c4;transition: all 0.3s;margin-left: 16px;
+      &:hover{color: $color-blue-4c7;}
+    }
   }
 }

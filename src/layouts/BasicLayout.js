@@ -45,7 +45,6 @@ class BasicLayout extends React.PureComponent{
 		} = this.props;
 		const {rendering} = this.state;
 		// const menuData = this.getMenuData();
-		console.log("children:",children)
 		const menuData = [];
 
 		const layout = (
