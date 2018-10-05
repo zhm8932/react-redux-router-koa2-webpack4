@@ -28,6 +28,10 @@ export default {
 				required: true,
 				message: '请输入密码',
 			},
+			{
+				pattern:/[a-zA-Z]+(?=[0-9+])|[0-9]+(?=[a-zA-Z]+)/g,
+				message:'密码不符合规则'
+			}
 		],
 	},
 	Mobile: {

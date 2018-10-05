@@ -1,0 +1,91 @@
+@import "../../sass/includes/settings";
+
+.form-list{
+  .ant-form-item-label{
+
+  }
+  li{
+    padding-left: 8px;padding-right: 8px;
+  }
+}
+
+.advanced-list{
+  margin-left: -8px;margin-right: -9px;
+  li{float: left;}
+}
+body{
+  .card{
+    margin-bottom: 24px;
+  }
+}
+.optional{
+  color: $color-gray-9;
+}
+
+.errorIcon {
+  cursor: pointer;
+  color: $color-red-f00;
+  margin-right: 24px;
+  i {
+    margin-right: 4px;
+  }
+}
+
+.errorListItem {
+  list-style: none;
+  border-bottom: 1px solid $color-gray-f0;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    background: $color-gray-f6;
+  }
+  &:last-child {
+    border: 0;
+  }
+  .errorIcon {
+    color: $color-red-f00;
+    float: left;
+    margin-top: 4px;
+    margin-right: 12px;
+    padding-bottom: 22px;
+  }
+  .errorField {
+    font-size: 12px;
+    color: $color-gray-9;
+    margin-top: 2px;
+  }
+}
+
+.errorPopover :global .ant-popover-inner-content {
+  padding: 0;
+  max-height: 290px;
+  overflow: auto;
+  min-width: 256px;
+}
+
+.setps-wrapper .stepForm{
+  width: 500px; margin: 40px auto 0;
+}
+
+
+.result-wrapper{
+  margin-top: 40px;margin-bottom: 20px;
+}
+.information{
+  line-height: 22px;
+  :global{
+    .ant-row:not(:last-child){margin-bottom: 24px;}
+  }
+}
+@media (max-width: $screen-sm-max) {
+  .setps-wrapper .stepForm{
+    width: 100%;
+    .ant-form-item-label, .ant-form-item-control-wrapper{
+      width: 100%;
+    }
+    .ant-form-item-label{text-align: left;}
+  }
+
+
+}

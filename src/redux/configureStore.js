@@ -3,8 +3,9 @@ import thunk from "redux-thunk";
 import {createLogger} from "redux-logger";
 import rootReducer from "./reducers";
 
+import fetchMiddleware from '../utils/fetchMiddleware';
 
-const middleware = [thunk];
+const middleware = [thunk,fetchMiddleware];
 
 if(process.env.NODE_ENV!=='production'){
 	middleware.push(createLogger())

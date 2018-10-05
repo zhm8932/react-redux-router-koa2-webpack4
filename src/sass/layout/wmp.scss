@@ -1,0 +1,407 @@
+@import "../includes/settings";
+
+//宽度
+.col-0 { width : $w0}
+.col-1 { width : $w1}
+.col-2 { width : $w2}
+.col-3 { width : $w3}
+.col-4 { width : $w4}
+.col-5 { width : $w5}
+.col-6 { width : $w6}
+.col-7 { width : $w7}
+.col-8 { width : $w8}
+.col-9 { width : $w9}
+.col-10{ width : $w10}
+.col-11{ width : $w11}
+.col-12{ width : $w12}
+.col-13{ width : $w13}
+.col-14{ width : $w14}
+.col-15{ width : $w15}
+.col-16{ width : $w16}
+.col-17{ width : $w17}
+.col-18{ width : $w18}
+.col-19{ width : $w19}
+.col-20{ width : $w20}
+.col-21{ width : $w21}
+.col-22{ width : $w22}
+.col-23{ width : $w23}
+.col-24{ width : $w24}
+
+//间距
+.offset-0 { margin-left : $w0}
+.offset-1 { margin-left : $w1}
+.offset-2 { margin-left : $w2}
+.offset-3 { margin-left : $w3}
+.offset-4 { margin-left : $w4}
+.offset-5 { margin-left : $w5}
+.offset-6 { margin-left : $w6}
+.offset-7 { margin-left : $w7}
+.offset-8 { margin-left : $w8}
+.offset-9 { margin-left : $w9}
+.offset-10{ margin-left : $w10}
+.offset-11{ margin-left : $w11}
+.offset-12{ margin-left : $w12}
+.offset-13{ margin-left : $w13}
+.offset-14{ margin-left : $w14}
+.offset-15{ margin-left : $w15}
+.offset-16{ margin-left : $w16}
+.offset-17{ margin-left : $w17}
+.offset-18{ margin-left : $w18}
+.offset-19{ margin-left : $w19}
+.offset-20{ margin-left : $w20}
+.offset-21{ margin-left : $w21}
+.offset-22{ margin-left : $w22}
+.offset-23{ margin-left : $w23}
+.offset-24{ margin-left : $w24}
+
+//左距离
+.left-0 { left : $w0}
+.left-1 { left : $w1}
+.left-2 { left : $w2}
+.left-3 { left : $w3}
+.left-4 { left : $w4}
+.left-5 { left : $w5}
+.left-6 { left : $w6}
+.left-7 { left : $w7}
+.left-8 { left : $w8}
+.left-9 { left : $w9}
+.left-10{ left : $w10}
+.left-11{ left : $w11}
+.left-12{ left : $w12}
+.left-13{ left : $w13}
+.left-14{ left : $w14}
+.left-15{ left : $w15}
+.left-16{ left : $w16}
+.left-17{ left : $w17}
+.left-18{ left : $w18}
+.left-19{ left : $w19}
+.left-20{ left : $w20}
+.left-21{ left : $w21}
+.left-22{ left : $w22}
+.left-23{ left : $w23}
+.left-24{ left : $w24}
+
+//右距离
+.right-0 { right : $w0}
+.right-1 { right : $w1}
+.right-2 { right : $w2}
+.right-3 { right : $w3}
+.right-4 { right : $w4}
+.right-5 { right : $w5}
+.right-6 { right : $w6}
+.right-7 { right : $w7}
+.right-8 { right : $w8}
+.right-9 { right : $w9}
+.right-10{ right : $w10}
+.right-11{ right : $w11}
+.right-12{ right : $w12}
+.right-13{ right : $w13}
+.right-14{ right : $w14}
+.right-15{ right : $w15}
+.right-16{ right : $w16}
+.right-17{ right : $w17}
+.right-18{ right : $w18}
+.right-19{ right : $w19}
+.right-20{ right : $w20}
+.right-21{ right : $w21}
+.right-22{ right : $w22}
+.right-23{ right : $w23}
+.right-24{ right : $w24}
+
+//间距
+.offset-0 { margin-left : $w0}
+.offset-1 { margin-left : $w1}
+.offset-2 { margin-left : $w2}
+.offset-3 { margin-left : $w3}
+.offset-4 { margin-left : $w4}
+.offset-5 { margin-left : $w5}
+.offset-6 { margin-left : $w6}
+.offset-7 { margin-left : $w7}
+.offset-8 { margin-left : $w8}
+.offset-9 { margin-left : $w9}
+.offset-10{ margin-left : $w10}
+.offset-11{ margin-left : $w11}
+.offset-12{ margin-left : $w12}
+.offset-13{ margin-left : $w13}
+.offset-14{ margin-left : $w14}
+.offset-15{ margin-left : $w15}
+.offset-16{ margin-left : $w16}
+.offset-17{ margin-left : $w17}
+.offset-18{ margin-left : $w18}
+.offset-19{ margin-left : $w19}
+.offset-20{ margin-left : $w20}
+.offset-21{ margin-left : $w21}
+.offset-22{ margin-left : $w22}
+.offset-23{ margin-left : $w23}
+.offset-24{ margin-left : $w24}
+
+//576px
+@media (min-width: $screen-sm) {
+  .col-sm-1 { width : $w1}
+  .col-sm-2 { width : $w2}
+  .col-sm-3 { width : $w3}
+  .col-sm-4 { width : $w4}
+  .col-sm-5 { width : $w5}
+  .col-sm-6 { width : $w6}
+  .col-sm-7 { width : $w7}
+  .col-sm-8 { width : $w8}
+  .col-sm-9 { width : $w9}
+  .col-sm-10{ width : $w10}
+  .col-sm-11{ width : $w11}
+  .col-sm-12{ width : $w12}
+  .col-sm-13{ width : $w13}
+  .col-sm-14{ width : $w14}
+  .col-sm-15{ width : $w15}
+  .col-sm-16{ width : $w16}
+  .col-sm-17{ width : $w17}
+  .col-sm-18{ width : $w18}
+  .col-sm-19{ width : $w19}
+  .col-sm-20{ width : $w20}
+  .col-sm-21{ width : $w21}
+  .col-sm-22{ width : $w22}
+  .col-sm-23{ width : $w23}
+  .col-sm-24{ width : $w24}
+
+  .col-sm-offset-0 { margin-left : $w0}
+  .col-sm-offset-1 { margin-left : $w1}
+  .col-sm-offset-2 { margin-left : $w2}
+  .col-sm-offset-3 { margin-left : $w3}
+  .col-sm-offset-4 { margin-left : $w4}
+  .col-sm-offset-5 { margin-left : $w5}
+  .col-sm-offset-6 { margin-left : $w6}
+  .col-sm-offset-7 { margin-left : $w7}
+  .col-sm-offset-8 { margin-left : $w8}
+  .col-sm-offset-9 { margin-left : $w9}
+  .col-sm-offset-10{ margin-left : $w10}
+  .col-sm-offset-11{ margin-left : $w11}
+  .col-sm-offset-12{ margin-left : $w12}
+  .col-sm-offset-13{ margin-left : $w13}
+  .col-sm-offset-14{ margin-left : $w14}
+  .col-sm-offset-15{ margin-left : $w15}
+  .col-sm-offset-16{ margin-left : $w16}
+  .col-sm-offset-17{ margin-left : $w17}
+  .col-sm-offset-18{ margin-left : $w18}
+  .col-sm-offset-19{ margin-left : $w19}
+  .col-sm-offset-20{ margin-left : $w20}
+  .col-sm-offset-21{ margin-left : $w21}
+  .col-sm-offset-22{ margin-left : $w22}
+  .col-sm-offset-23{ margin-left : $w23}
+  .col-sm-offset-24{ margin-left : $w24}
+}
+
+//768px
+@media (min-width: $screen-md) {
+  .col-md-1 { width : $w1}
+  .col-md-2 { width : $w2}
+  .col-md-3 { width : $w3}
+  .col-md-4 { width : $w4}
+  .col-md-5 { width : $w5}
+  .col-md-6 { width : $w6}
+  .col-md-7 { width : $w7}
+  .col-md-8 { width : $w8}
+  .col-md-9 { width : $w9}
+  .col-md-10{ width : $w10}
+  .col-md-11{ width : $w11}
+  .col-md-12{ width : $w12}
+  .col-md-13{ width : $w13}
+  .col-md-14{ width : $w14}
+  .col-md-15{ width : $w15}
+  .col-md-16{ width : $w16}
+  .col-md-17{ width : $w17}
+  .col-md-18{ width : $w18}
+  .col-md-19{ width : $w19}
+  .col-md-20{ width : $w20}
+  .col-md-21{ width : $w21}
+  .col-md-22{ width : $w22}
+  .col-md-23{ width : $w23}
+  .col-md-24{ width : $w24}
+
+  .col-md-offset-0 { margin-left : $w0}
+  .col-md-offset-1 { margin-left : $w1}
+  .col-md-offset-2 { margin-left : $w2}
+  .col-md-offset-3 { margin-left : $w3}
+  .col-md-offset-4 { margin-left : $w4}
+  .col-md-offset-5 { margin-left : $w5}
+  .col-md-offset-6 { margin-left : $w6}
+  .col-md-offset-7 { margin-left : $w7}
+  .col-md-offset-8 { margin-left : $w8}
+  .col-md-offset-9 { margin-left : $w9}
+  .col-md-offset-10{ margin-left : $w10}
+  .col-md-offset-11{ margin-left : $w11}
+  .col-md-offset-12{ margin-left : $w12}
+  .col-md-offset-13{ margin-left : $w13}
+  .col-md-offset-14{ margin-left : $w14}
+  .col-md-offset-15{ margin-left : $w15}
+  .col-md-offset-16{ margin-left : $w16}
+  .col-md-offset-17{ margin-left : $w17}
+  .col-md-offset-18{ margin-left : $w18}
+  .col-md-offset-19{ margin-left : $w19}
+  .col-md-offset-20{ margin-left : $w20}
+  .col-md-offset-21{ margin-left : $w21}
+  .col-md-offset-22{ margin-left : $w22}
+  .col-md-offset-23{ margin-left : $w23}
+  .col-md-offset-24{ margin-left : $w24}
+}
+
+//992px
+@media (min-width: $screen-lg) {
+  .col-lg-1,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-13,.col-lg-14,.col-lg-15,.col-lg-16,.col-lg-17,.col-lg-18,.col-lg-19,.col-lg-20,.col-lg-21,.col-lg-22,.col-lg-23,.col-lg-24{
+    float: left;
+  }
+  .col-lg-1 { width : $w1}
+  .col-lg-2 { width : $w2}
+  .col-lg-3 { width : $w3}
+  .col-lg-4 { width : $w4}
+  .col-lg-5 { width : $w5}
+  .col-lg-6 { width : $w6}
+  .col-lg-7 { width : $w7}
+  .col-lg-8 { width : $w8}
+  .col-lg-9 { width : $w9}
+  .col-lg-10{ width : $w10}
+  .col-lg-11{ width : $w11}
+  .col-lg-12{ width : $w12}
+  .col-lg-13{ width : $w13}
+  .col-lg-14{ width : $w14}
+  .col-lg-15{ width : $w15}
+  .col-lg-16{ width : $w16}
+  .col-lg-17{ width : $w17}
+  .col-lg-18{ width : $w18}
+  .col-lg-19{ width : $w19}
+  .col-lg-20{ width : $w20}
+  .col-lg-21{ width : $w21}
+  .col-lg-22{ width : $w22}
+  .col-lg-23{ width : $w23}
+  .col-lg-24{ width : $w24}
+
+  .col-lg-offset-0 { margin-left : $w0}
+  .col-lg-offset-1 { margin-left : $w1}
+  .col-lg-offset-2 { margin-left : $w2}
+  .col-lg-offset-3 { margin-left : $w3}
+  .col-lg-offset-4 { margin-left : $w4}
+  .col-lg-offset-5 { margin-left : $w5}
+  .col-lg-offset-6 { margin-left : $w6}
+  .col-lg-offset-7 { margin-left : $w7}
+  .col-lg-offset-8 { margin-left : $w8}
+  .col-lg-offset-9 { margin-left : $w9}
+  .col-lg-offset-10{ margin-left : $w10}
+  .col-lg-offset-11{ margin-left : $w11}
+  .col-lg-offset-12{ margin-left : $w12}
+  .col-lg-offset-13{ margin-left : $w13}
+  .col-lg-offset-14{ margin-left : $w14}
+  .col-lg-offset-15{ margin-left : $w15}
+  .col-lg-offset-16{ margin-left : $w16}
+  .col-lg-offset-17{ margin-left : $w17}
+  .col-lg-offset-18{ margin-left : $w18}
+  .col-lg-offset-19{ margin-left : $w19}
+  .col-lg-offset-20{ margin-left : $w20}
+  .col-lg-offset-21{ margin-left : $w21}
+  .col-lg-offset-22{ margin-left : $w22}
+  .col-lg-offset-23{ margin-left : $w23}
+  .col-lg-offset-24{ margin-left : $w24}
+}
+//1200px
+@media (min-width: $screen-xl) {
+  .col-xl-1 { width : $w1}
+  .col-xl-2 { width : $w2}
+  .col-xl-3 { width : $w3}
+  .col-xl-4 { width : $w4}
+  .col-xl-5 { width : $w5}
+  .col-xl-6 { width : $w6}
+  .col-xl-7 { width : $w7}
+  .col-xl-8 { width : $w8}
+  .col-xl-9 { width : $w9}
+  .col-xl-10{ width : $w10}
+  .col-xl-11{ width : $w11}
+  .col-xl-12{ width : $w12}
+  .col-xl-13{ width : $w13}
+  .col-xl-14{ width : $w14}
+  .col-xl-15{ width : $w15}
+  .col-xl-16{ width : $w16}
+  .col-xl-17{ width : $w17}
+  .col-xl-18{ width : $w18}
+  .col-xl-19{ width : $w19}
+  .col-xl-20{ width : $w20}
+  .col-xl-21{ width : $w21}
+  .col-xl-22{ width : $w22}
+  .col-xl-23{ width : $w23}
+  .col-xl-24{ width : $w24}
+
+  .col-xl-offset-0 { margin-left : $w0}
+  .col-xl-offset-1 { margin-left : $w1}
+  .col-xl-offset-2 { margin-left : $w2}
+  .col-xl-offset-3 { margin-left : $w3}
+  .col-xl-offset-4 { margin-left : $w4}
+  .col-xl-offset-5 { margin-left : $w5}
+  .col-xl-offset-6 { margin-left : $w6}
+  .col-xl-offset-7 { margin-left : $w7}
+  .col-xl-offset-8 { margin-left : $w8}
+  .col-xl-offset-9 { margin-left : $w9}
+  .col-xl-offset-10{ margin-left : $w10}
+  .col-xl-offset-11{ margin-left : $w11}
+  .col-xl-offset-12{ margin-left : $w12}
+  .col-xl-offset-13{ margin-left : $w13}
+  .col-xl-offset-14{ margin-left : $w14}
+  .col-xl-offset-15{ margin-left : $w15}
+  .col-xl-offset-16{ margin-left : $w16}
+  .col-xl-offset-17{ margin-left : $w17}
+  .col-xl-offset-18{ margin-left : $w18}
+  .col-xl-offset-19{ margin-left : $w19}
+  .col-xl-offset-20{ margin-left : $w20}
+  .col-xl-offset-21{ margin-left : $w21}
+  .col-xl-offset-22{ margin-left : $w22}
+  .col-xl-offset-23{ margin-left : $w23}
+  .col-xl-offset-24{ margin-left : $w24}
+}
+//1600px
+@media (min-width: $screen-xxl) {
+  .col-xxl-1 { width : $w1}
+  .col-xxl-2 { width : $w2}
+  .col-xxl-3 { width : $w3}
+  .col-xxl-4 { width : $w4}
+  .col-xxl-5 { width : $w5}
+  .col-xxl-6 { width : $w6}
+  .col-xxl-7 { width : $w7}
+  .col-xxl-8 { width : $w8}
+  .col-xxl-9 { width : $w9}
+  .col-xxl-10{ width : $w10}
+  .col-xxl-11{ width : $w11}
+  .col-xxl-12{ width : $w12}
+  .col-xxl-13{ width : $w13}
+  .col-xxl-14{ width : $w14}
+  .col-xxl-15{ width : $w15}
+  .col-xxl-16{ width : $w16}
+  .col-xxl-17{ width : $w17}
+  .col-xxl-18{ width : $w18}
+  .col-xxl-19{ width : $w19}
+  .col-xxl-20{ width : $w20}
+  .col-xxl-21{ width : $w21}
+  .col-xxl-22{ width : $w22}
+  .col-xxl-23{ width : $w23}
+  .col-xxl-24{ width : $w24}
+
+  .col-xxxxl-offset-0 { margin-left : $w0}
+  .col-xxl-offset-1 { margin-left : $w1}
+  .col-xxl-offset-2 { margin-left : $w2}
+  .col-xxl-offset-3 { margin-left : $w3}
+  .col-xxl-offset-4 { margin-left : $w4}
+  .col-xxl-offset-5 { margin-left : $w5}
+  .col-xxl-offset-6 { margin-left : $w6}
+  .col-xxl-offset-7 { margin-left : $w7}
+  .col-xxl-offset-8 { margin-left : $w8}
+  .col-xxl-offset-9 { margin-left : $w9}
+  .col-xxl-offset-10{ margin-left : $w10}
+  .col-xxl-offset-11{ margin-left : $w11}
+  .col-xxl-offset-12{ margin-left : $w12}
+  .col-xxl-offset-13{ margin-left : $w13}
+  .col-xxl-offset-14{ margin-left : $w14}
+  .col-xxl-offset-15{ margin-left : $w15}
+  .col-xxl-offset-16{ margin-left : $w16}
+  .col-xxl-offset-17{ margin-left : $w17}
+  .col-xxl-offset-18{ margin-left : $w18}
+  .col-xxl-offset-19{ margin-left : $w19}
+  .col-xxl-offset-20{ margin-left : $w20}
+  .col-xxl-offset-21{ margin-left : $w21}
+  .col-xxl-offset-22{ margin-left : $w22}
+  .col-xxl-offset-23{ margin-left : $w23}
+  .col-xxl-offset-24{ margin-left : $w24}
+}

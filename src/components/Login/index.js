@@ -73,7 +73,6 @@ class Login extends Component {
 	};
 
 	handleSubmit = e => {
-		console.log("handleSubmit111111111111111111111");
 		console.log("this.state：",this.state);
 		e.preventDefault();
 		const { active, type } = this.state;
@@ -91,7 +90,6 @@ class Login extends Component {
 		const TabChildren = [];
 		const otherChildren = [];
 		React.Children.forEach(children, item => {
-			console.log("itemitem:",item)
 			if (!item) {
 				return;
 			}
@@ -104,6 +102,7 @@ class Login extends Component {
 		});
 		console.log("TabChildren:",TabChildren)
 		console.log("getContext:",this.getContext())
+
 		return (
 			<LoginContext.Provider value={this.getContext()}>
 				<div className={classNames(className, styles.login)}>

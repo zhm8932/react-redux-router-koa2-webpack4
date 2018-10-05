@@ -34,6 +34,7 @@ class WrapFormItem extends Component {
 	onGetCaptcha = () => {
 		const { onGetCaptcha } = this.props;
 		const result = onGetCaptcha ? onGetCaptcha() : null;
+		console.log("result:",result)
 		if (result === false) {
 			return;
 		}
@@ -58,8 +59,10 @@ class WrapFormItem extends Component {
 	};
 
 	runGetCaptchaCountDown = () => {
+		console.log("runGetCaptchaCountDownrunGetCaptchaCountDown")
 		const { countDown } = this.props;
 		let count = countDown || 59;
+		console.log("count:",count)
 		this.setState({ count });
 		this.interval = setInterval(() => {
 			count -= 1;
@@ -94,7 +97,6 @@ class WrapFormItem extends Component {
 		const options = this.getFormItemOptions(this.props);
 
 		const otherProps = restProps || {};
-		console.log("typetype:",type)
 		if (type === 'Captcha') {
 			const inputProps = omit(otherProps, ['onGetCaptcha', 'countDown']);
 			return (
@@ -117,6 +119,8 @@ class WrapFormItem extends Component {
 				</FormItem>
 			);
 		}
+		console.log("name:",name,"options:",options)
+		console.log("customprops:",customprops,"otherProps:",otherProps)
 		return (
 			<FormItem>
 				{getFieldDecorator(name, options)(<Input {...customprops} {...otherProps} />)}
@@ -128,21 +132,23 @@ class WrapFormItem extends Component {
 const LoginItem = {};
 Object.keys(ItemMap).forEach(key => {
 	const item = ItemMap[key];
-	console.log("key:",key)
 	LoginItem[key] = props => {
 		console.log("props：",props)
 		return (
 			<LoginContext.Consumer>
-				{context => (
-					<WrapFormItem
-						customprops={item.props}
-						{...props}
-						rules={item.rules}
-						type={key}
-						updateActive={context.updateActive}
-						form={context.form}
-					/>
-				)}
+				{context => {
+					console.log("context:",context)
+					return (
+						<WrapFormItem
+							customprops={item.props}
+							{...props}
+							rules={item.rules}
+							type={key}
+							updateActive={context.updateActive}
+							form={context.form}
+						/>
+					)
+				}}
 			</LoginContext.Consumer>
 		)
 	};

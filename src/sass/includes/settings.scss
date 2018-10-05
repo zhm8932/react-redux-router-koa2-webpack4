@@ -1,3 +1,4 @@
+// -------- Colors -----------
 
 $white:#FFF;
 
@@ -13,15 +14,87 @@ $color-orange-e6a:#e6a34f;  //主色
 $color-red-f00:#ff6555;     //提示色
 $color-blue-4c7:#4c7ee9;     //提示色
 
-//箭头  $origin:旋转中心  $bgColor：背景颜色  $rotateX,$rotateY 旋转方向
-@mixin arrow($origin:0% 100%,$bgColor:$white,$rotateX:50,$rotateY:-50){
-  width:20px;height:22px;display: block;position: absolute;top: 50%;margin-top: -1rem;
-  &:before,&:after{
-    height: 1px;width: 12px;content: '';background:$bgColor;position: absolute;left: 0px;top:50%;
-    transform-origin:$origin;
-    transform: rotate($rotateX+deg);
-  }
-  &:after{
-    transform: rotate($rotateY+deg);
-  }
-}
+$primary-color          : $color-blue-4c7;
+$info-color             : $color-blue-4c7;
+$success-color          : #52c41a;
+$processing-color       : $color-blue-4c7;
+$error-color            : $color-red-f00;
+$highlight-color        : $color-red-f00;
+//$warning-color          : $gold-6;
+$normal-color           : #d9d9d9;
+
+
+// Media queries breakpoints
+// Extra small screen / phone  手机屏、超小屏
+$screen-xs              : 480px;
+$screen-xs-min          : $screen-xs;
+
+// Small screen / tablet 小屏
+$screen-sm              : 576px;
+$screen-sm-min          : $screen-sm;
+
+// Medium screen / desktop 中屏
+$screen-md              : 768px;
+$screen-md-min          : $screen-md;
+
+// Large screen / wide desktop 大屏
+$screen-lg              : 992px;
+$screen-lg-min          : $screen-lg;
+
+// Extra large screen / full hd  满屏
+$screen-xl              : 1200px;
+$screen-xl-min          : $screen-xl;
+
+// Extra extra large screen / large descktop 超大屏
+$screen-xxl              : 1600px;
+$screen-xxl-min          : $screen-xxl;
+
+// provide a maximum
+$screen-xs-max          : ($screen-sm-min - 1px);
+$screen-sm-max          : ($screen-md-min - 1px);
+$screen-md-max          : ($screen-lg-min - 1px);
+$screen-lg-max          : ($screen-xl-min - 1px);
+$screen-xl-max          : ($screen-xxl-min - 1px);
+
+//定义宽度 分成24等份
+$w0     :        0;
+$w1     :        4.16666667%;
+$w2     :        8.33333333%;
+$w3     :        12.5%;
+$w4     :        16.66666667%;
+$w5     :        20.83333333%;
+$w6     :        25%;
+$w7     :        29.16666667%;
+$w8     :        33.33333333%;
+$w9     :        37.5%;
+$w10    :        41.66666667%;
+$w11    :        45.83333333%;
+$w12    :        50%;
+$w13    :        54.16666667%;
+$w14    :        58.33333333%;
+$w15    :        62.5%;
+$w16    :        66.66666667%;
+$w17    :        70.83333333%;
+$w18    :        75%;
+$w19    :        79.16666667%;
+$w20    :        83.33333333%;
+$w21    :        87.5%;
+$w22    :        91.66666667%;
+$w23    :        95.83333333%;
+$w24    :        100%;
+
+
+$border-radius-base : 4px;
+$border-radius-sm   : 2px;
+
+// vertical paddings
+$padding-lg   : 24px;     // containers
+$padding-md   : 16px;     // small containers and buttons
+$padding-sm   : 12px;     // Form controls and items
+$padding-xs   : 8px;      // small items
+
+// 间距
+$w-lg   : 24px;     // containers
+$w-md   : 16px;     // small containers and buttons
+$w-sm   : 12px;     // Form controls and items
+$w-xs   : 8px;      // small items

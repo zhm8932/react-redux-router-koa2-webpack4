@@ -1,17 +1,51 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom';
+import {Link,BrowserRouter,withRouter} from 'react-router-dom';
 import { Checkbox, Alert, Icon ,Tabs,Button,Row, Col,Affix} from 'antd';
 
 import Login from '../../components/Login';
 import styles from './login.scss';
 
+import {login} from './Login.redux'
+import fetchs from "../../utils/fetch";
+import Cookies from 'js-cookie';
+import history from "../../utils/history";
+
+import PropTypes from "prop-types";
+
 const TabPane = Tabs.TabPane;
 const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
 
-@connect(({ login, loading }) => ({
-	login,
-}))
+console.log("BrowserRouter:",BrowserRouter)
+console.log("history:",history)
+
+@connect(
+	({ login, loading }) => ({
+		login,
+	}),
+	(dispatch,ownPorps)=>(
+		{
+			// handleLogin
+			handleLogin:(data,self)=>{
+				console.log("dispatch:",dispatch)
+				console.log("ownPorps:",ownPorps)
+				fetchs({
+					url:'/users/login',
+					method:'POST',
+					data:data
+				})
+				.then(json=>{
+					console.log("jsonjsonjson:",json)
+					console.log("==ownPorps:",ownPorps)
+					console.log("==history:",self)
+					ownPorps.history.push('/');
+					// self.props.history.push('/news')
+				})
+			}
+		}
+	)
+
+)
 
 class LoginPage extends Component {
 	constructor(props){
@@ -29,17 +63,17 @@ class LoginPage extends Component {
 		new Promise((resolve, reject) => {
 			console.log("this.loginForm:",this.loginForm)
 			this.loginForm.validateFields(['mobile'], {}, (err, values) => {
+				console.log("err,",err,"values:",values)
 				if (err) {
 					reject(err);
 				} else {
 					const { dispatch } = this.props;
 					console.log("dispatch:",dispatch)
-					dispatch({
+					/*dispatch({
 						type: 'login/getCaptcha',
 						payload: values.mobile,
-					})
-						.then(resolve)
-						.catch(reject);
+					})*/
+
 				}
 			});
 		});
@@ -50,13 +84,9 @@ class LoginPage extends Component {
 		const { type } = this.state;
 		if (!err) {
 			const { dispatch } = this.props;
-			dispatch({
-				type: 'login/login',
-				payload: {
-					...values,
-					type,
-				},
-			});
+
+			let data = values;
+			this.props.handleLogin(data)
 		}
 	};
 
@@ -72,6 +102,9 @@ class LoginPage extends Component {
 	render() {
 		const { login, submitting } = this.props;
 		const { type, autoLogin } = this.state;
+		console.log("contextcontext:",this.context)
+		console.log("this.context.router:",this.context.router)
+		console.log("this.props.history:",this.props.history)
 		return (
 			<div className="main login">
 				<Login
@@ -119,4 +152,4 @@ class LoginPage extends Component {
 	}
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);

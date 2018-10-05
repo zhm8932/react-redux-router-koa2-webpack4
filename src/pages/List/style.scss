@@ -1,0 +1,10 @@
+@import "../../sass/includes/settings";
+
+.search-wrapper{
+  .ant-form-item-label{width: auto}
+  .ant-form-item-control-wrapper{display: inline-block;flex: 1 1}
+
+  .ant-form-item{
+    display: flex;
+  }
+}

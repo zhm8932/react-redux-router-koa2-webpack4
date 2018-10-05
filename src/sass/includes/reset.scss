@@ -3,7 +3,7 @@
 * reset.css
 * Author:haiming.zeng
 * Ver 1.0
-* Date:2017/09/18
+* Date:2019/09/18
 */
 /*
 * reset 清除默认属性
@@ -18,7 +18,7 @@ body {
   font-size:1.4rem;
   font-family:'微软雅黑',FontAwesome, Helvetica,Arial,sans-serif;
 }
-select,button,input{line-height:26px;min-height:26px;box-sizing: border-box;font-family:'微软雅黑',FontAwesome, Helvetica,Arial,sans-serif;  }
+select,button,input{line-height:26px;min-height:24px;box-sizing: border-box;font-family:'微软雅黑',FontAwesome, Helvetica,Arial,sans-serif;  }
 button{border: none;background: none;outline: none;}
 textarea{box-sizing: border-box;font-family:'微软雅黑',FontAwesome, Helvetica,Arial,sans-serif;padding:2px 0.5rem;box-sizing: border-box;  }
 select::-ms-expand { display: none; }
@@ -39,7 +39,6 @@ ul, li {
   list-style: none; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-size: 14px;
   font-weight: normal; }
 
 mark {

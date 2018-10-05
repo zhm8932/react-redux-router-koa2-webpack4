@@ -1,4 +1,3 @@
-
 var md5 = require("blueimp-md5");
 
 exports.isAjax = function (req) {
@@ -32,10 +31,15 @@ exports.browser = function (req) {
 	return browser
 }
 
-exports.handlerError = function (error) {
-	const err = {}
+exports.handlerError = function (error,ctx) {
+	let err = {};
+	let status;
 	let message = "";
-	switch (error.code) {
+	switch (error&&error.code) {
+		case 'ENOENT':
+			status = '404';
+			message = '服务器地址异常';
+			break;
 		case 'ENOTFOUND':
 			message = "服务器异常";
 			break;
@@ -46,15 +50,29 @@ exports.handlerError = function (error) {
 			message = "服务连接异常";
 			break;
 		default:
-			message = "系统异常,请稍后重试";
+			message = error.message || "系统异常,请稍后重试";
 	}
 	err.message = message;
 	err.success = false;
 	let key;
 	for (key in error) {
-		err[key] = error[key]
+		err[key] = error[key];
 	}
-	logger.debug("err:",JSON.stringify(err))
+	// console.log("err----1:",JSON.stringify(err))
+	// console.log("ctx----1:",JSON.stringify(ctx))
+	if(ctx){
+		let {request,response} = ctx;
+		if(request){
+			err.method 	= request.method;
+			err.url 	= request.url;
+			err.message = request.message||err.message;
+		}
+		if(response){
+			err.message = err.message || response.message;
+			err.status  = response.status ||status
+		}
+	}
+	logger.warn("err:",JSON.stringify(err))
 	return err;
 }
 exports.handlerLogin = function (req,res,resObj) {
@@ -145,3 +163,4 @@ exports.getSign = function (params) {
 	var str =  paramsArr.join('')+params.secretKey;
 	return md5(str).toString().toUpperCase()
 }
+

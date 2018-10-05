@@ -1,3 +1,5 @@
+// import nzh from 'nzh/cn';
+const nzh = require('nzh/cn');
 //前后端公共方法
 exports.formatDate = function(value, format) {
 	if(!value){
@@ -35,7 +37,7 @@ exports.formatDate = function(value, format) {
 }
 
 //html字符转义过滤函数
-exports.htmlEncode = function(str) {
+exports.htmlEncode =  function (str) {
 	if(typeof str ==="string"&&str!==""){
 		return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 	}else{
@@ -43,7 +45,7 @@ exports.htmlEncode = function(str) {
 	}
 }
 
-exports.distance = function (str) {
+exports.distance = function(str) {
 	if(!str||str==='undefined'){
 		return ''
 	}else{
@@ -60,18 +62,10 @@ exports.distance = function (str) {
 exports.toBoolean = function (str) {
 	return (/^true$/i).test(str);
 }
-
-
-// 配置APP跳转地址
-exports.appUrl = {
-	login:'/login',  					//登录： msxfapp://mslife.msxf.com/login
-	home:'/home',  						//首页：
-	nearbySearch:'/nearby/search',  	//首页：
-	order:'/order',  					//首页：
-	favorite:'/favorite',  				//我的收藏：
-	payBill:'/pay/bill',  				//买单：
-	payCombo:'/pay/combo',  				//套餐购买：
-	discountMerchant:'/discount/getMerchant',  		//优惠券页面：
-	comboDetail:'/combo/detail',  		//套餐详情：
-	storesDetail:'/stores/detail',  		//商户详情：
+//数组转换为中文大写
+exports.digitUppercase = function(n){
+	return nzh.toMoney(n);
 }
+
+
+

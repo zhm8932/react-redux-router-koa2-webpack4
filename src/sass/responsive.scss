@@ -17,3 +17,10 @@
   .wrapper{width:320px;}
 
 }
+
+
+@media screen and (max-width: $screen-sm) {
+  .main {
+    margin: 10px 0 0;
+  }
+}

@@ -55,6 +55,7 @@ export default function renderRoutes(routes,extraProps = {},switchProps={}) {
 						exact={route.exact}
 						strict={route.strict}
 						render={props=>{
+							// console.log("render--props:",props)
 							const childRoutes = renderRoutes(
 								route.routes,
 								{} /*extractProps*/,
@@ -66,7 +67,12 @@ export default function renderRoutes(routes,extraProps = {},switchProps={}) {
 							if(route.component){
 								const compatProps = {};
 								return (
-									<route.component>
+									<route.component
+										{...props}
+										{...extraProps}
+										{...compatProps}
+										route={route}
+									>
 										{childRoutes}
 									</route.component>
 								)
