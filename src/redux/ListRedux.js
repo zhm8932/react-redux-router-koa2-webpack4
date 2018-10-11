@@ -43,4 +43,15 @@ export const rule = (state={list:[],pagination:{}},action)=>{
 	}
 }
 
+
+export const handleRules = ({url,data,method})=>({
+	[FETCH_API]:{
+		// types:[ADD_RULES,ADD_RULES_SUCESS,ADD_RULES_ERROR],
+		types:[RULE,RULE_SUCESS,RULE_ERROR],
+		url,
+		data,
+		method
+	}
+});
+
 export default combineReducers({rule})

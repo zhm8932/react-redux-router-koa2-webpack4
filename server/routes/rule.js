@@ -85,4 +85,68 @@ router.get('/list',function (ctx,next) {
 	ctx.body = data;
 })
 
+
+function postRule(ctx) {
+
+	const body = ctx.request.body;
+	let {method} = ctx;
+	console.log("postRule---body:",body)
+	const {name, desc, key } = body;
+
+	method = method.toLocaleLowerCase();
+	switch (method) {
+		/* eslint no-case-declarations:0 */
+		case 'delete':
+			tableListDataSource = tableListDataSource.filter(item => key.indexOf(item.key) === -1);
+			break;
+		case 'post':
+			const i = Math.ceil(Math.random() * 10000);
+			tableListDataSource.unshift({
+				key: i,
+				href: 'https://ant.design',
+				avatar: [
+					'https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png',
+					'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png',
+				][i % 2],
+				name: `TradeCode ${i}`,
+				title: `一个任务名称 ${i}`,
+				owner: '曲丽丽',
+				desc,
+				callNo: Math.floor(Math.random() * 1000),
+				status: Math.floor(Math.random() * 10) % 2,
+				updatedAt: new Date(),
+				createdAt: new Date(),
+				progress: Math.ceil(Math.random() * 100),
+			});
+			break;
+		case 'put':   //更新
+			tableListDataSource = tableListDataSource.map(item => {
+				if (item.key === key) {
+					Object.assign(item, { desc, name });
+					return item;
+				}
+				return item;
+			});
+			break;
+		default:
+			break;
+	}
+
+	const result = {
+		list: tableListDataSource,
+		pagination: {
+			total: tableListDataSource.length,
+		},
+	};
+
+	return result
+}
+
+router.all('/handleRule',function (ctx,next) {
+	const data = postRule(ctx);
+	console.log("handleRule-data:",JSON.stringify(data))
+	ctx.body = data
+})
+
+
 module.exports = router;

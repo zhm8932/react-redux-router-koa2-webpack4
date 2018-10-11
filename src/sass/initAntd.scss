@@ -1,0 +1,6 @@
+@import "./includes/settings";
+
+//重置antd样式、公共
+.ant-table-filter-dropdown-btns{
+  .clear{clear: inherit;}
+}

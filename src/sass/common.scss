@@ -29,6 +29,16 @@
 .mr-md{margin-right: $w-md}
 .mr-lg{margin-right: $w-lg}
 
+.mb-xs{margin-bottom: $w-xs}
+.mb-sm{margin-bottom: $w-sm}
+.mb-md{margin-bottom: $w-md}
+.mb-lg{margin-bottom: $w-lg}
+
+.mt-xs{margin-top: $w-xs}
+.mt-sm{margin-top: $w-sm}
+.mt-md{margin-top: $w-md}
+.mt-lg{margin-top: $w-lg}
+
 .pl-xs{padding-left: $w-xs}
 .pl-sm{padding-left: $w-sm}
 .pl-md{padding-left: $w-md}
@@ -39,10 +49,21 @@
 .pr-md{padding-right: $w-md}
 .pr-lg{padding-right: $w-lg}
 
-.mlr-xs{margin-left: $w-xs;margin-right: $w-xs}
-.mlr-sm{margin-left: $w-sm;margin-right: $w-sm}
-.mlr-md{margin-left: $w-md;margin-right: $w-md}
-.mlr-lg{margin-left: $w-lg;margin-right: $w-lg}
+.pt-xs{padding-top: $w-xs}
+.pt-sm{padding-top: $w-sm}
+.pt-md{padding-top: $w-md}
+.pt-lg{padding-top: $w-lg}
+
+.pb-xs{padding-bottom: $w-xs}
+.pb-sm{padding-bottom: $w-sm}
+.pb-md{padding-bottom: $w-md}
+.pb-lg{padding-bottom: $w-lg}
+
+//左右间距
+.mlr-xs{margin-left: $w-xs;margin-right: $w-xs}   //8
+.mlr-sm{margin-left: $w-sm;margin-right: $w-sm}   //12
+.mlr-md{margin-left: $w-md;margin-right: $w-md}   //16
+.mlr-lg{margin-left: $w-lg;margin-right: $w-lg}   //24
 
 .plr-xs{padding-left: $w-xs;padding-right: $w-xs}
 .plr-sm{padding-left: $w-sm;padding-right: $w-sm}
@@ -70,6 +91,9 @@
     }
     &:after{content: ''}
   }
+}
+.blue{
+  color: $color-blue-4c7;
 }
 .submit-btn{
   display: block;width: 100%;background-color: $color-blue-4c7;color: $white;

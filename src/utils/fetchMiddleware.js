@@ -1,4 +1,5 @@
 import fetchs,{FETCH_API} from './fetch'
+import {message} from 'antd';
 const fetchMiddleware = store => next => action => {
 	const fetchAPI = action[FETCH_API];
 
@@ -9,7 +10,7 @@ const fetchMiddleware = store => next => action => {
 		return next(action);
 	}
 
-	const {types,url,method,data,mode} = fetchAPI;
+	const {types,url,method,data,mode,isAuto=true} = fetchAPI;
 	console.log("中间件---自动处理状态:",types);
 	const [LOADING, SUCCESS, ERROR] = types;
 
@@ -48,12 +49,17 @@ const fetchMiddleware = store => next => action => {
 	})
 	.catch(err => {
 		console.log("fetch---err:",err,JSON.stringify(err))
-		return next(actionWith({
-			type:ERROR,
-			loading:false,
-			error:err,
-			message:err&&err.message||'系统异常，请稍后重试！'
-		}));
+		//自动处理错误
+		if(isAuto){
+			message.error(err.message)
+		}else{
+			return next(actionWith({
+				type:ERROR,
+				loading:false,
+				error:err,
+				message:err&&err.message||'系统异常，请稍后重试！'
+			}));
+		}
 	});
 };
 

@@ -25,7 +25,7 @@ const {TextArea} = Input;
 import {handleBasicSubmit,handleBasicSubmitSuccess,handleBasic} from '../../redux/FormRedux'
 const formItemLayout= {
 	labelCol:{
-		className:'col-7'
+		className:'col-7 lt'
 	},
 	wrapperCol:{
 		className:'col-10 lt'

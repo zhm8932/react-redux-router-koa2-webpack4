@@ -25,7 +25,7 @@ exports.browser = function (req) {
 		ie: u.indexOf('MSIE') > -1, //
 		mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端,包括iPad
 		pc: !/(Android|iPhone|iPod|iOS|SymbianOS|Windows Phone|iPad)/i.test(u) , //PC端
-		webview : !!u.match(/AppleWebKit.*Mobile.*msxf/i), //webview
+		webview : !!u.match(/AppleWebKit.*Mobile.*mssxxf/i), //webview
 	};
 	// console.log("browser:",JSON.stringify(browser))
 	return browser
@@ -83,7 +83,7 @@ exports.handlerLogin = function (req,res,resObj) {
 		var mobile = req.session&&req.session.mobile?req.session.mobile:'';
 		if(browser.webview){
 			logger.debug("跳转APP登录");
-			return res.redirect('app://mslife.zhm.com/login');
+			return res.redirect('app://msslife.zhm.com/login');
 		}else if(mobile){
 			return res.render('users/login')
 		}else{

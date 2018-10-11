@@ -128,7 +128,10 @@ module.exports = {
 				use: [{
 					loader: "style-loader"
 				}, {
-					loader: "css-loader"
+					loader: "css-loader",
+					options:{
+						importLoaders:1
+					}
 				}]
 			},
 			{

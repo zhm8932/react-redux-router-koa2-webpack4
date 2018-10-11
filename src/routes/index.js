@@ -1,6 +1,7 @@
 import React from "react";
 import Bundle from '../utils/Bundle';
 import renderRoutes from './renderRoutes';
+import LocalWrapper from '../components/LocalWrapper'
 import {
 	BrowserRouter as Router,
 	Route,
@@ -27,21 +28,6 @@ import Analysis from '../pages/Dashboard/Analysis';
 
 
 import routes from './routes'
-/*const Routes = ()=>(
-	<Router>
-		<React.Fragment>
-			<Header/>
-			<section className="layout">
-				<Switch>
-					<Route exact path="/" component={lazyLoad(Home)}/>
-					<Route exact path="/news" component={lazyLoad(News)}/>
-					<Route exact path="/dashboard/analysis" component={lazyLoad(Analysis)}/>
-				</Switch>
-			</section>
-		</React.Fragment>
-	</Router>
-)*/
-
 
 const RouteWithSubRoutes = route => (
 	<Route
@@ -57,31 +43,12 @@ const Routes = ()=>(
 	routes.map((route, i) => <RouteWithSubRoutes key={i} {...route}/>)
 )
 
-/*const Rouoters = ()=>(
-	<div className="router">
-		<Switch>
-			<Route exact path="/" component={lazyLoad(Home)}/>
-			<Route exact path="/news" component={lazyLoad(News)}/>
-			<Route exact path="/dashboard/analysis" component={lazyLoad(Analysis)}/>
-		</Switch>
-	</div>
-)*/
-/*const RouteWrapper = ()=>(
-	<Router>
-		<React.Fragment>
-			<Route children={({ match, ...rest }) => (
-				<BasicLayout>
-					{match && <Routes {...rest}/>}
-				</BasicLayout>
-			)}/>
-
-		</React.Fragment>
-	</Router>
-)*/
 const RouteWrapper = ()=>(
-	<Router>
-		{renderRoutes(routes,{})}
-	</Router>
+	<LocalWrapper>
+		<Router>
+			{renderRoutes(routes,{})}
+		</Router>
+	</LocalWrapper>
 )
 
 export default RouteWrapper

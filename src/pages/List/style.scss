@@ -8,3 +8,17 @@
     display: flex;
   }
 }
+
+.tableList :global{
+  .tableListOperator{
+    margin-bottom: 16px;
+    button{margin-right: $w-xs;}
+  }
+}
+
+.tableListForm :global {
+  .ant-form-item .ant-form-item-control {
+    line-height: 32px;
+  }
+  .submitButtons{margin-bottom: 24px;display: block;white-space: nowrap;}
+}

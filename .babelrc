@@ -16,8 +16,8 @@
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     ["import",{
       "libraryName":"antd",
-      "libraryDirectory": "es",
-      "style": "css"
+      "libraryDirectory": "es"
+//      "style": "css"    //单独加载css
     }]
   ]
 }
