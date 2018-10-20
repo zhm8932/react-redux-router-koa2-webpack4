@@ -10,6 +10,32 @@ import Header from './Header';
 import Footer from './Footer';
 import Context from './MenuContext';
 
+// Conversion router to menu.
+function formatter(data, parentPath = '', parentAuthority, parentName) {
+	return data.map(item => {
+		let locale = 'menu';
+		if (parentName && item.name) {
+			locale = `${parentName}.${item.name}`;
+		} else if (item.name) {
+			locale = `menu.${item.name}`;
+		} else if (parentName) {
+			locale = parentName;
+		}
+		console.log("local:",locale)
+		const result = {
+			...item,
+			locale,
+			authority: item.authority || parentAuthority,
+		};
+		if (item.routes) {
+			const children = formatter(item.routes, `${parentPath}${item.path}/`, item.authority, locale);
+			// Reduce memory usage
+			result.children = children;
+		}
+		delete result.routes;
+		return result;
+	});
+}
 
 class BasicLayout extends React.PureComponent{
 	constructor(props){
@@ -26,7 +52,9 @@ class BasicLayout extends React.PureComponent{
 	getBreadcrumbNameMap() {
 		const routerMap = {};
 		const mergeMenuAndRouter = data => {
+			console.log("menuItem.data:",data)
 			data.forEach(menuItem => {
+				console.log("menuItem.children:",menuItem.children,"menuItem::",menuItem)
 				if (menuItem.children) {
 					mergeMenuAndRouter(menuItem.children);
 				}
@@ -35,11 +63,12 @@ class BasicLayout extends React.PureComponent{
 			});
 		};
 		mergeMenuAndRouter(this.getMenuData());
+		console.log("routerMap:",routerMap,"getMenuData:",this.getMenuData())
 		return routerMap;
 	}
 	getContext(){
 		const  {location} = this.props;
-		console.log("location:::::",location)
+		console.log("location:::",location,"breadcrumbNameMap-context:::",this.breadcrumbNameMap)
 		return {
 			location,
 			breadcrumbNameMap: this.breadcrumbNameMap,
@@ -49,7 +78,7 @@ class BasicLayout extends React.PureComponent{
 		const {
 			route:{routes}
 		} = this.props;
-		return routes||{}
+		return formatter(routes)||{}
 	}
 	getPageTitle = pathname =>{
 		let currRouterData = null;

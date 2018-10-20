@@ -1,6 +1,6 @@
 import React,{PureComponent} from 'react';
 import {Link} from 'react-router-dom';
-
+import {FormattedMessage} from 'react-intl'
 import PageHeader from '../../components/PageHeader';
 import MenuContext from '../../layouts/MenuContext';
 
@@ -26,8 +26,11 @@ class PageHeaderWrapper extends PureComponent {
 							key='pageheader'
 							{...restProps}
 							linkElement={Link}
-							itemRender={item=>{
-								return item.name
+							itemRender={item => {
+								if (item.locale) {
+									return <FormattedMessage id={item.locale} defaultMessage={item.name} />;
+								}
+								return item.name;
 							}}
 						/>
 					)}

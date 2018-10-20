@@ -62,35 +62,35 @@ export default [
 		routes:[
 			{
 				path:'/',
-				name:'首页',
+				name:'home',
 				component:lazyLoad(Home),
 				"exact": true
 			},
 			{
 				path:'/news',
 				component:lazyLoad(News),
-				name:'企业动态',
+				name:'news',
 				exact: true
 			},
 			{
 				path:'/dashboard/analysis',
 				component:lazyLoad(Analysis),
-				name:'Analysis',
+				name:'analysis',
 				exact: true
 			},{
 				path:'/form',
 				icon:'form',
-				name:'表单页',
+				name:'form',
 				routes:[
 					{
 						path:'/form/basic-form',
-						name:'BasicForm',
+						name:'basicform',
 						component:lazyLoad(BasicForm),
 						exact:true
 					},
 					{
 						path:'/form/step-form',
-						name:'StepForm',
+						name:'stepform',
 						component:lazyLoad(StepForm),
 						// hideChildrenInMenu: true,
 						routes:[
@@ -116,7 +116,7 @@ export default [
 					},
 					{
 						path:'/form/advanced-form',
-						name:'AdvanceForm',
+						name:'advancedform',
 						component:lazyLoad(AdvanceForm),
 						exact:true
 					}
@@ -128,13 +128,13 @@ export default [
 				routes:[
 					{
 						path:'/list/table-list',
-						name:'TableList',
+						name:'searchtable',
 						component:lazyLoad(TableList),
 						exact:true
 					},
 					{
 						path:'/list/basic-list',
-						name:'BasicList',
+						name:'basiclist',
 						component:lazyLoad(BasicList),
 						exact:true
 					}

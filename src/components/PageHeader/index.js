@@ -10,7 +10,7 @@ import './index.scss'
 
 export const getBreadcrumb = (breadcrumbNameMap, url) => {
 	let breadcrumb = breadcrumbNameMap[url];
-	console.log("breadcrumb11::",breadcrumb)
+	console.log("breadcrumb11111111:",breadcrumb,"url:",url,"breadcrumbNameMap：",breadcrumbNameMap)
 	if (!breadcrumb) {
 		Object.keys(breadcrumbNameMap).forEach(item => {
 
@@ -54,9 +54,11 @@ export default class PageHeader extends PureComponent{
 		const { breadcrumbSeparator, home, itemRender, linkElement = 'a' } = this.props;
 		// Convert the url to an array
 		const pathSnippets = utils.urlToList(routerLocation.pathname);
+		console.log("pathSnippets:::",pathSnippets)
 		// Loop data mosaic routing
 		const extraBreadcrumbItems = pathSnippets.map((url, index) => {
 			const currentBreadcrumb = getBreadcrumb(breadcrumbNameMap, url);
+			console.log("currentBreadcrumb:",currentBreadcrumb)
 			if (currentBreadcrumb.inherited) {
 				return null;
 			}
@@ -72,6 +74,7 @@ export default class PageHeader extends PureComponent{
 				</Breadcrumb.Item>
 			) : null;
 		});
+		console.log("extraBreadcrumbItems::",extraBreadcrumbItems)
 		// Add home breadcrumbs to your head
 		extraBreadcrumbItems.unshift(
 			<Breadcrumb.Item key="home">
