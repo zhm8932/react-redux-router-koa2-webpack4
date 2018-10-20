@@ -20,6 +20,9 @@ class PageHeaderWrapper extends PureComponent {
 						<PageHeader
 							wide={contentWidth ==='Fixed'}
 							{...value}
+							myvalue={value}
+							restProps={restProps}
+							home="首页"
 							key='pageheader'
 							{...restProps}
 							linkElement={Link}

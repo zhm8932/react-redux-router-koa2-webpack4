@@ -17,11 +17,32 @@ class BasicLayout extends React.PureComponent{
 		this.state = {
 			rendering:true
 		}
+		this.breadcrumbNameMap = this.getBreadcrumbNameMap();
+	}
+	/**
+	 * 获取面包屑映射
+	 * @param {Object} menuData 菜单配置
+	 */
+	getBreadcrumbNameMap() {
+		const routerMap = {};
+		const mergeMenuAndRouter = data => {
+			data.forEach(menuItem => {
+				if (menuItem.children) {
+					mergeMenuAndRouter(menuItem.children);
+				}
+				// Reduce memory usage
+				routerMap[menuItem.path] = menuItem;
+			});
+		};
+		mergeMenuAndRouter(this.getMenuData());
+		return routerMap;
 	}
 	getContext(){
-		const  {location} = this.props
+		const  {location} = this.props;
+		console.log("location:::::",location)
 		return {
-			location
+			location,
+			breadcrumbNameMap: this.breadcrumbNameMap,
 		}
 	}
 	getMenuData (){
@@ -67,7 +88,10 @@ class BasicLayout extends React.PureComponent{
 	render(){
 		return (
 			<DocumentTitle>
-				{this.layout()}
+				<Context.Provider value={this.getContext()}>
+					{this.layout()}
+				</Context.Provider>
+
 			</DocumentTitle>
 		)
 	}

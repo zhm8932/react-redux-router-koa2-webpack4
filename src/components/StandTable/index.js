@@ -28,8 +28,15 @@ class StandardTable extends PureComponent{
 	}
 
 	static getDerivedStateFromProps(nextProps) {
+		/*
+		getDerivedStateFromProps在组件实例化后，和接受新的props后被调用。
+		他返回一个对象来更新状态，或者返回null表示新的props不需要任何state的更新。
+		如果是由于父组件的props更改，所带来的重新渲染，也会触发此方法。
+		调用steState()不会触发getDerivedStateFromProps()
+		* */
+
 		// clean state
-		console.log("nextProps:::",nextProps)
+		console.log("getDerivedStateFromProps-nextProps:::",nextProps)
 		if (nextProps.selectedRows.length === 0) {
 			const needTotalList = initTotalList(nextProps.columns);
 

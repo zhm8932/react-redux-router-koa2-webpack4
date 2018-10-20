@@ -592,6 +592,7 @@ export default class TableList extends PureComponent{
 	renderConfirm=(key)=>{
 		const { dispatch } = this.props;
 		const {confirmModalVisible,stepFormValues} = this.state;
+		const rowsLen = stepFormValues.length;
 		return (
 			<Modal
 				destroyOnClose
@@ -599,10 +600,11 @@ export default class TableList extends PureComponent{
 				visible={confirmModalVisible}
 				onCancel={()=>this.handleModal('confirmModalVisible')}
 				onOk={()=>{
+					const key = stepFormValues.map(item=>item.key);
 					dispatch(handleRules({
 						url:'/rule/handleRule',
 						method:'delete',
-						data:{key:stepFormValues}
+						data:{key:key}
 					})).then(json=>{
 						if(!json.error){
 							message.success("删除成功");
@@ -614,7 +616,12 @@ export default class TableList extends PureComponent{
 					})
 				}}
 			>
-				<div>确认是否删除？</div>
+				<div>
+					{stepFormValues.map((item,index)=>(
+						<span key={item.key}>{item.name}{rowsLen-1>index?"、":''}</span>
+					))}
+					<p>确认是否删除该{rowsLen}项？</p>
+				</div>
 			</Modal>
 		)
 	}
@@ -622,7 +629,7 @@ export default class TableList extends PureComponent{
 		const { dispatch } = this.props;
 		const { selectedRows } = this.state;
 		console.log("e:",e,"selectedRows:",selectedRows)
-		const key = selectedRows.map(row=>row.key);
+		const key = selectedRows.map(row=>({key:row.key,name:row.name}));
 		console.log("key:::",key)
 		switch (e.key) {
 			case 'delete':

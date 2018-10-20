@@ -15,6 +15,10 @@ import StepFormConfirm from '../pages/Forms/StepForm/Step2'
 import StepFormResult from '../pages/Forms/StepForm/Step3'
 import AdvanceForm from '../pages/Forms/AdvanceForm';
 import TableList from '../pages/List/TableList';
+import BasicList from '../pages/List/BasicList';
+import Result from "../components/Result";
+import Success from "../pages/Result/Success";
+import Error from "../pages/Result/Error";
 
 //按需加载
 const lazyLoad = (comp) => (props) => (
@@ -76,7 +80,7 @@ export default [
 			},{
 				path:'/form',
 				icon:'form',
-				name:'form',
+				name:'表单页',
 				routes:[
 					{
 						path:'/form/basic-form',
@@ -126,6 +130,30 @@ export default [
 						path:'/list/table-list',
 						name:'TableList',
 						component:lazyLoad(TableList),
+						exact:true
+					},
+					{
+						path:'/list/basic-list',
+						name:'BasicList',
+						component:lazyLoad(BasicList),
+						exact:true
+					}
+				]
+			},{
+				path:'/result',
+				icon:'result',
+				name:'result',
+				routes:[
+					{
+						path:'/result/success',
+						name:'Success',
+						component:lazyLoad(Success),
+						exact:true
+					},
+					{
+						path:'/result/error',
+						name:'Error',
+						component:lazyLoad(Error),
 						exact:true
 					}
 				]

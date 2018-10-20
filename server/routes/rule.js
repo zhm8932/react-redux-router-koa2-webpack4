@@ -7,7 +7,7 @@ const parse = qs.parse;
 
 // mock tableListDataSource
 let tableListDataSource = [];
-for (let i = 0; i < 46; i += 1) {
+for (let i = 1; i < 46; i += 1) {
 	tableListDataSource.push({
 		key: i,
 		disabled: i % 6 === 0,
@@ -61,6 +61,10 @@ function getRule(ctx) {
 		dataSource = dataSource.filter(data => data.name.indexOf(params.name) > -1);
 	}
 
+	if (params.title) {
+		dataSource = dataSource.filter(data => data.title.indexOf(params.title) > -1);
+	}
+
 	let pageSize = 10;
 	if (params.pageSize) {
 		pageSize = params.pageSize * 1;
@@ -91,7 +95,7 @@ function postRule(ctx) {
 	const body = ctx.request.body;
 	let {method} = ctx;
 	console.log("postRule---body:",body)
-	const {name, desc, key } = body;
+	const {name, desc, key,createdAt,owner,title} = body;
 
 	method = method.toLocaleLowerCase();
 	switch (method) {
@@ -122,7 +126,7 @@ function postRule(ctx) {
 		case 'put':   //更新
 			tableListDataSource = tableListDataSource.map(item => {
 				if (item.key === key) {
-					Object.assign(item, { desc, name });
+					Object.assign(item, { desc, name,title,owner,createdAt});
 					return item;
 				}
 				return item;

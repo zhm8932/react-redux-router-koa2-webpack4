@@ -22,3 +22,21 @@
   }
   .submitButtons{margin-bottom: 24px;display: block;white-space: nowrap;}
 }
+
+.standardList{
+  .ant-divider-vertical{position: absolute;height: 100%;right: 0px;}
+  .headerInfo{text-align: center;
+    p{font-size: 24px;color: $color-gray-3;}
+  }
+  .listCard{
+    .list-item{display: flex;}
+    .ant-list-item-meta{flex: 1 1;display: flex;}
+    .listContent{text-align: right;}
+    .listContentItem{
+      display: inline-block;text-align: right;margin-left: 40px;
+    }
+  }
+  .extraContent{
+    .ant-input-affix-wrapper{width: 220px;margin-left: 20px;}
+  }
+}

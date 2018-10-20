@@ -1,21 +1,151 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent,createElement} from 'react';
 
 import {Breadcrumb,Tabs,Skeleton} from 'antd';
 import classNames from 'classnames';
+import * as utils from '../../utils';
+import pathToRegexp from 'path-to-regexp';
 
 const {TabPane} = Tabs;
 import './index.scss'
+
+export const getBreadcrumb = (breadcrumbNameMap, url) => {
+	let breadcrumb = breadcrumbNameMap[url];
+	console.log("breadcrumb11::",breadcrumb)
+	if (!breadcrumb) {
+		Object.keys(breadcrumbNameMap).forEach(item => {
+
+			if (pathToRegexp(item).test(url)) {
+				breadcrumb = breadcrumbNameMap[item];
+			}
+		});
+	}
+	console.log("getbreadcrumb::",breadcrumb)
+	return breadcrumb || {};
+};
 
 export default class PageHeader extends PureComponent{
 	state = {
 		breadcrumb:null,
 	};
-	componentDidMount(){
-
+	componentDidMount() {
+		this.getBreadcrumbDom();
 	}
 	componentDidUpdate(preProps){
 
 	}
+	getBreadcrumbProps = () => {
+		const { routes, params, location, breadcrumbNameMap } = this.props;
+		console.log("this.props::::",this.props)
+		return {
+			routes,
+			params,
+			routerLocation: location,
+			breadcrumbNameMap,
+		};
+	};
+	getBreadcrumbDom = ()=>{
+		const breadcrumb = this.conversionBreadcrumbList();
+		console.log("getBreadcrumbDom:",breadcrumb)
+		this.setState({
+			breadcrumb,
+		});
+	}
+	conversionFromLocation = (routerLocation, breadcrumbNameMap) => {
+		const { breadcrumbSeparator, home, itemRender, linkElement = 'a' } = this.props;
+		// Convert the url to an array
+		const pathSnippets = utils.urlToList(routerLocation.pathname);
+		// Loop data mosaic routing
+		const extraBreadcrumbItems = pathSnippets.map((url, index) => {
+			const currentBreadcrumb = getBreadcrumb(breadcrumbNameMap, url);
+			if (currentBreadcrumb.inherited) {
+				return null;
+			}
+			const isLinkable = index !== pathSnippets.length - 1 && currentBreadcrumb.component;
+			const name = itemRender ? itemRender(currentBreadcrumb) : currentBreadcrumb.name;
+			return currentBreadcrumb.name && !currentBreadcrumb.hideInBreadcrumb ? (
+				<Breadcrumb.Item key={url}>
+					{createElement(
+						isLinkable ? linkElement : 'span',
+						{ [linkElement === 'a' ? 'href' : 'to']: url },
+						name
+					)}
+				</Breadcrumb.Item>
+			) : null;
+		});
+		// Add home breadcrumbs to your head
+		extraBreadcrumbItems.unshift(
+			<Breadcrumb.Item key="home">
+				{createElement(
+					linkElement,
+					{
+						[linkElement === 'a' ? 'href' : 'to']: '/',
+					},
+					home || 'Home'
+				)}
+			</Breadcrumb.Item>
+		);
+		return (
+			<Breadcrumb className='breadcrumb' separator={breadcrumbSeparator}>
+				{extraBreadcrumbItems}
+			</Breadcrumb>
+		);
+	};
+	/**
+	 * 将参数转化为面包屑
+	 * Convert parameters into breadcrumbs
+	 */
+	conversionBreadcrumbList = () => {
+		const { breadcrumbList, breadcrumbSeparator } = this.props;
+		const { routes, params, routerLocation, breadcrumbNameMap } = this.getBreadcrumbProps();
+		if (breadcrumbList && breadcrumbList.length) {
+			return this.conversionFromProps();
+		}
+		console.log("routes:",routes,"params:",params)
+		// 如果传入 routes 和 params 属性
+		// If pass routes and params attributes
+		if (routes && params) {
+			return (
+				<Breadcrumb
+					className='breadcrumb'
+					routes={routes.filter(route => route.breadcrumbName)}
+					params={params}
+					itemRender={this.itemRender}
+					separator={breadcrumbSeparator}
+				/>
+			);
+		}
+		console.log("routerLocation:",routerLocation,"breadcrumbNameMap:",breadcrumbNameMap)
+		// 根据 location 生成 面包屑
+		// Generate breadcrumbs based on location
+		if (routerLocation && routerLocation.pathname) {
+			return this.conversionFromLocation(routerLocation, breadcrumbNameMap);
+		}
+		return null;
+	};
+	// Generated according to props
+	conversionFromProps = () => {
+		const { breadcrumbList, breadcrumbSeparator, itemRender, linkElement = 'a' } = this.props;
+		return (
+			<Breadcrumb className='breadcrumb' separator={breadcrumbSeparator}>
+				{breadcrumbList.map(item => {
+					const title = itemRender ? itemRender(item) : item.title;
+					return (
+						<Breadcrumb.Item key={item.title}>
+							{item.href
+								? createElement(
+									linkElement,
+									{
+										[linkElement === 'a' ? 'href' : 'to']: item.href,
+									},
+									title
+								)
+								: title}
+						</Breadcrumb.Item>
+					);
+				})}
+			</Breadcrumb>
+		);
+	};
 	render(){
 		const {
 			title,
@@ -40,6 +170,9 @@ export default class PageHeader extends PureComponent{
 		if(tabActiveKey!==undefined){
 			activeKeyProps.activeKey = tabActiveKey;
 		}
+		console.log("breadcrumb--this.state:",this.state)
+		console.log("breadcrumb--his.props:",this.props)
+		console.log("breadcrumb:::",breadcrumb)
 		return (
 			<div className={clsString}>
 				<div className={wide?'wide':''}>
@@ -50,7 +183,7 @@ export default class PageHeader extends PureComponent{
 						paragraph={{rows:3}}
 						avatar={{size:'large'}}
 					>
-						{/*{breadcrumb}*/}
+						{breadcrumb}
 						<div className='detail'>
 							{logo&&<div className='logo'>{logo}</div>}
 							<div className="row">
