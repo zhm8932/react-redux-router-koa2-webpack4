@@ -92,7 +92,7 @@ export default [
 						path:'/form/step-form',
 						name:'stepform',
 						component:lazyLoad(StepForm),
-						// hideChildrenInMenu: true,
+						hideChildrenInMenu: true,
 						routes:[
 							{
 								path:'/form/step-form/info',
@@ -123,7 +123,7 @@ export default [
 				]
 			},{
 				path:'/list',
-				icon:'list',
+				icon:'table',
 				name:'list',
 				routes:[
 					{
@@ -141,18 +141,18 @@ export default [
 				]
 			},{
 				path:'/result',
-				icon:'result',
+				icon:'check-circle-o',
 				name:'result',
 				routes:[
 					{
 						path:'/result/success',
-						name:'Success',
+						name:'success',
 						component:lazyLoad(Success),
 						exact:true
 					},
 					{
 						path:'/result/error',
-						name:'Error',
+						name:'fail',
 						component:lazyLoad(Error),
 						exact:true
 					}

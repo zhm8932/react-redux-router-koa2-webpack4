@@ -9,6 +9,7 @@ import GlobalHeader from '../components/GlobalHeader';
 import Header from './Header';
 import Footer from './Footer';
 import Context from './MenuContext';
+import {change_collapsed} from '../redux/globalRedux'
 
 // Conversion router to menu.
 function formatter(data, parentPath = '', parentAuthority, parentName) {
@@ -88,22 +89,36 @@ class BasicLayout extends React.PureComponent{
 		const message = currRouterData.name;
 		return `${message} - Admin`
 	}
+	handleMenuCollapse = collapsed=>{
+		const {dispatch} = this.props;
+		dispatch(change_collapsed())
+	}
 	layout(){
 		const {
+			navTheme='dark',
 			children,
 			// location:{pathname},
 		} = this.props;
 		const {rendering} = this.state;
-		// const menuData = this.getMenuData();
-		const menuData = [];
+		const menuData = this.getMenuData();
+		// const menuData = [];
 
 		const layout = (
 			<React.Fragment>
 				<SiderMenu
-
+					menuData={menuData}
+					theme={navTheme}
+					{...this.props}
 				/>
 				<section className="layout">
-					<GlobalHeader/>
+					{/*<GlobalHeader
+						onCollapse={this.handleMenuCollapse}
+						{...this.props}
+					/>*/}
+					<Header
+						handleMenuCollapse = {this.handleMenuCollapse}
+						{...this.props}
+					/>
 					<div className="layout-content">
 						{children}
 					</div>
@@ -126,4 +141,6 @@ class BasicLayout extends React.PureComponent{
 	}
 }
 
-export default BasicLayout
+export default connect(({global})=>({
+	collapsed:global.collapsed
+}))(BasicLayout)

@@ -2,10 +2,23 @@ import React, {Component } from 'react'
 
 import { Menu, Icon } from 'antd';
 import {Link} from 'react-router-dom'
+import {FormattedMessage} from 'react-intl'
 
-const {SubMenu} = Menu;
+// const {SubMenu,MenuItemGroup} = Menu;
+
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 import Menus from '../../layouts/Menus';
 
+const getIcon = icon => {
+	if (typeof icon === 'string' && icon.indexOf('http') === 0) {
+		return <img src={icon} alt="icon" className={styles.icon} />;
+	}
+	if (typeof icon === 'string') {
+		return <Icon type={icon} />;
+	}
+	return icon;
+};
 export default class BaseMenu extends Component{
 	constructor(props){
 		super(props)
@@ -15,7 +28,8 @@ export default class BaseMenu extends Component{
 	 * @memberof SiderMenu
 	 */
 	getMenuItemPath = item =>{
-		let name = item.name;
+		// let name = item.name;
+		const name = <FormattedMessage id={item.locale} />;
 		const itemPath = this.conversionPath(item.path);
 		const {icon,target} = item;
 
@@ -28,7 +42,11 @@ export default class BaseMenu extends Component{
 		}
 		const {location} = this.props;
 		return (
-			<Link>
+			<Link
+				to={itemPath}
+				target={target}
+				replace={itemPath === location.pathname}
+			>
 				{icon}
 				<span>{name}</span>
 			</Link>
@@ -45,9 +63,24 @@ export default class BaseMenu extends Component{
 	 */
 	getSubMenuOrItem = item =>{
 		if(item.children&&!item.hideChildrenInMenu&&item.children.some(child=>child.name)){
-			const name = item.local;
+			// const name = item.local;
+			const name = <FormattedMessage id={item.locale} />;
+			// console.log("getSubMenuOrItem--item:::",item,"item.locale:",item.locale,"name:::",name)
+			console.log("item.locale:",item.locale,"name:::",name)
 			return (
-				<SubMenu key = {item.path}>
+				<SubMenu
+					key = {item.path}
+					title={
+						item.icon?(
+							<span>
+								<span>{getIcon(item.icon)}</span>
+								<span>{name}</span>
+							</span>
+						):(
+							{name}
+						)
+					}
+				>
 					{this.getNavMenuItems(item.children)}
 				</SubMenu>
 			)
@@ -84,14 +117,18 @@ export default class BaseMenu extends Component{
 			current: e.key,
 		});
 	}
-
 	render(){
-		const  {handleOpenChange,menuData} = this.props;
+		{/*<Menus/>*/}
+		const  {handleOpenChange,menuData,theme,mode='inline'} = this.props;
 		return (
-			<Menus/>
-			/*<Menu key="Menu">
-				{/!*{this.getNavMenuItems(menuData)}*!/}
-			</Menu>*/
+			<Menu
+				theme={theme}
+				defaultSelectedKeys={['1']}
+				defaultOpenKeys={['sub1']}
+				mode={mode}
+			>
+				{this.getNavMenuItems(menuData)}
+			</Menu>
 		)
 	}
 }

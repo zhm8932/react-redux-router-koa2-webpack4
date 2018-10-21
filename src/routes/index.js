@@ -20,11 +20,6 @@ const lazyLoad = (comp) => (props) => (
 	</Bundle>
 );
 
-import BasicLayout from '../layouts/BasicLayout';
-import Header from '../layouts/Header';
-import Home from '../pages/Home';
-import News from '../pages/News';
-import Analysis from '../pages/Dashboard/Analysis';
 
 
 import routes from './routes'
