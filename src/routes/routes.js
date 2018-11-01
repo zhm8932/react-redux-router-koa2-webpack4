@@ -20,6 +20,17 @@ import Result from "../components/Result";
 import Success from "../pages/Result/Success";
 import Error from "../pages/Result/Error";
 
+import BasicProfile from "../pages/Profile/BasicProfile";
+import AdvancedProfile from "../pages/Profile/AdvancedProfile";
+
+import Exception403 from "../pages/Exception/403";
+import Exception404 from "../pages/Exception/404";
+import Exception500 from "../pages/Exception/500";
+
+
+import Center from "../pages/Account/Center";
+import Settings from "../pages/Account/Settings";
+
 //按需加载
 const lazyLoad = (comp) => (props) => (
 	<Bundle load={comp}>
@@ -73,11 +84,6 @@ export default [
 				exact: true
 			},
 			{
-				path:'/dashboard/analysis',
-				component:lazyLoad(Analysis),
-				name:'analysis',
-				exact: true
-			},{
 				path:'/form',
 				icon:'form',
 				name:'form',
@@ -154,6 +160,66 @@ export default [
 						path:'/result/error',
 						name:'fail',
 						component:lazyLoad(Error),
+						exact:true
+					}
+				]
+			},{
+				path:'/profile',
+				icon:'profile',
+				name:'profile',
+				routes:[
+					{
+						path:'/profile/basic',
+						name:'basic',
+						component:lazyLoad(BasicProfile),
+						exact:true
+					},
+					{
+						path:'/profile/advanced',
+						name:'advanced',
+						component:lazyLoad(AdvancedProfile),
+						exact:true
+					}
+				]
+			},,{
+				path:'/exception',
+				icon:'exception',
+				name:'exception',
+				routes:[
+					{
+						path:'/exception/403',
+						name:'not-permission',
+						component:lazyLoad(Exception403),
+						exact:true
+					},
+					{
+						path:'/exception/404',
+						name:'not-find',
+						component:lazyLoad(Exception404),
+						exact:true
+					},
+					{
+						path:'/exception/500',
+						name:'server-error',
+						component:lazyLoad(Exception500),
+						exact:true
+					}
+				]
+			},{
+				path:'/account',
+				icon:'user',
+				name:'account',
+				routes:[
+					{
+						path:'/account/center',
+						name:'center',
+						component:lazyLoad(Center),
+						exact:true
+					},
+					{
+						path:'/account/settings',
+						name:'settings',
+						component:lazyLoad(Settings),
 						exact:true
 					}
 				]

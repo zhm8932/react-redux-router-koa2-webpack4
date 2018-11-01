@@ -3,6 +3,8 @@ import React, {Component } from 'react'
 import { Menu, Icon } from 'antd';
 import {Link} from 'react-router-dom'
 import {FormattedMessage} from 'react-intl'
+import pathToRegexp from 'path-to-regexp';
+import {urlToList} from '../../utils'
 
 // const {SubMenu,MenuItemGroup} = Menu;
 
@@ -19,6 +21,15 @@ const getIcon = icon => {
 	}
 	return icon;
 };
+
+export const getMenuMatches = (flatMenuKeys, path) =>{
+	console.log("flatMenuKeys::",flatMenuKeys)
+	let menuKeys = flatMenuKeys.filter(item => item && pathToRegexp(item).test(path));
+	console.log("menuKeys:::",menuKeys)
+	return menuKeys
+}
+
+
 export default class BaseMenu extends Component{
 	constructor(props){
 		super(props)
@@ -36,7 +47,7 @@ export default class BaseMenu extends Component{
 		if(/^https?\/\//.test(itemPath)){
 			return (
 				<a href={itemPath} target={target}>
-					<span>{name}</span>
+					<span data-local={item.locale}>{name}</span>
 				</a>
 			)
 		}
@@ -48,7 +59,7 @@ export default class BaseMenu extends Component{
 				replace={itemPath === location.pathname}
 			>
 				{icon}
-				<span>{name}</span>
+				<span data-locale={item.locale}>{name}</span>
 			</Link>
 		)
 	}
@@ -62,11 +73,12 @@ export default class BaseMenu extends Component{
 	 * get SubMenu or Item
 	 */
 	getSubMenuOrItem = item =>{
+		//有子菜单且 不在菜单中隐藏、且子类有name属性
 		if(item.children&&!item.hideChildrenInMenu&&item.children.some(child=>child.name)){
 			// const name = item.local;
 			const name = <FormattedMessage id={item.locale} />;
-			// console.log("getSubMenuOrItem--item:::",item,"item.locale:",item.locale,"name:::",name)
-			console.log("item.locale:",item.locale,"name:::",name)
+			// console.log("getSubMenuOrItem--item:::",item)
+			// console.log("item.locale:",item.locale,"name:::",name)
 			return (
 				<SubMenu
 					key = {item.path}
@@ -74,10 +86,10 @@ export default class BaseMenu extends Component{
 						item.icon?(
 							<span>
 								<span>{getIcon(item.icon)}</span>
-								<span>{name}</span>
+								<span data-local={item.locale}>{name}</span>
 							</span>
 						):(
-							{name}
+							<em data-local={item.locale}>{name}</em>
 						)
 					}
 				>
@@ -96,9 +108,10 @@ export default class BaseMenu extends Component{
 			return []
 		}
 		return menusData
-			.filter(item=>item.name&&!item.hideInMenu)
+			.filter(item=>item.name&&!item.hideInMenu)  //不在菜单中显示
 			.map(item=>{
 				const ItemDom = this.getSubMenuOrItem(item,parent);
+				console.log("item:",item,"ItemDom:::::",ItemDom)
 				return this.checkPermissionItem(item.authroity,ItemDom)
 			})
 	}
@@ -117,15 +130,42 @@ export default class BaseMenu extends Component{
 			current: e.key,
 		});
 	}
+	getSelectedMenuKeys =()=>{
+		console.log("1111111111111111111111111")
+		const {
+			location:{pathname}
+		} = this.props;
+		console.log("getSelectedMenuKeys--pathname::::",pathname)
+		console.log("urlToList::::",urlToList(pathname))
+		return urlToList(pathname)
+	}
 	render(){
-		{/*<Menus/>*/}
-		const  {handleOpenChange,menuData,theme,mode='inline'} = this.props;
+
+		const  {openKeys,handleOpenChange,menuData,theme,mode='inline'} = this.props;
+		// let selectedKeys = ["/list", "/list/basic-list"]   //当前选中的菜单项 key 数组
+
+		let selectedKeys = this.getSelectedMenuKeys()
+		// const openKeys = ["/list", "/list/basic-list"]		//当前展开的 SubMenu 菜单项 key 数组
+		console.log("selectedKeys:::",selectedKeys)
+		console.log("openKeys:::",openKeys)
+		// const openKeys = this.getSelectedMenuKeys();
+
+		let props = {};
+		if(openKeys){
+			props = {
+				openKeys
+			}
+		}
+
 		return (
 			<Menu
 				theme={theme}
+				onOpenChange={handleOpenChange}
 				defaultSelectedKeys={['1']}
 				defaultOpenKeys={['sub1']}
 				mode={mode}
+				selectedKeys={selectedKeys}
+				{...props}
 			>
 				{this.getNavMenuItems(menuData)}
 			</Menu>

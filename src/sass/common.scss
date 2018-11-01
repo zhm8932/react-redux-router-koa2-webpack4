@@ -7,16 +7,21 @@
   display: block;
 }
 .fixed{position: fixed;left:50%;top: 0px;z-index: 99;transform: translateX(-50%)}
-.wrapper{
-  width: 1000px;margin: 0 auto;
-}
-.pd{
-  padding: 10px;
-}
-.on{
-  position: relative;
-}
+.wrapper{ width: 1000px;margin: 0 auto;}
+.pd{ padding: 10px;}
+.on{ position: relative;}
 .noMsg{padding: 2rem 1rem;text-align: center;color: $color-gray-9;box-sizing: border-box;width: 100%;}
+
+
+//字体大小
+
+.f12{font-size: 1.2rem}
+.f14{font-size: 1.4rem}
+.f16{font-size: 1.6rem}
+.f18{font-size: 1.8rem}
+
+//颜色
+.red{color: $color-red-f00;}
 
 //间距
 .ml-xs{margin-left: $w-xs}    //8

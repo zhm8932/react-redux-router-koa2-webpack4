@@ -102,6 +102,9 @@
   .layout-footer{
     text-align: center;
     background-color:$color-gray-f0;
+    .global-footer{
+      color: rgba(0, 0, 0, 0.45);
+    }
   }
   .layout-content{
     padding: 10px;

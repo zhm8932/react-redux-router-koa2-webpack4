@@ -28,22 +28,17 @@ module.exports = merge(webpackConfig,{
 					'css-loader',
 					'sass-loader'
 				]
-				/*test:/\.scss$/,
-				use:['css-hot-loader'].concat(ExtractTextPlugin.extract({  //开发环境分离css时，热更新无效
-					fallback:'style-loader',
-					use: [{
-						loader: "css-loader",
-					}, {
-						loader: "sass-loader"
-					}],
-				})),*/
 			},
 		]
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(), // 启用 HMR
 		new webpack.NoEmitOnErrorsPlugin(),  //编译出现错误时,跳过该阶段
-		new MiniCssExtractPlugin('css/[name].css'),
+		new MiniCssExtractPlugin({
+			filename:'css/[name].css',
+			chunkFilename: "css/[id].css"
+		}),
+		// new MiniCssExtractPlugin('css/[name].css'),
 		/*new ExtractTextPlugin('css/[name].css',{
 			allChunks : true
 		}),*/
