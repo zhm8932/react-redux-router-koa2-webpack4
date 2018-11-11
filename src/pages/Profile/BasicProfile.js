@@ -14,13 +14,13 @@ const goodsColumns = [
 	{title: '金额', dataIndex:'total',render:(text,item)=>`￥${(item.price*item.num).toFixed(2)}`},
 ]
 
-const statusMap = ['success', 'processing','default','error', 'warning'];
-const status = ['关闭', '运行中', '已上线', '异常'];
+const statusMap = ['success', 'processing','default','error', 'processing', 'processing', 'warning'];
+const status = ['关闭', '运行中', '已上线', '异常','运行中','运行中','运行中','运行中'];
 const progressMap = ['联系客户','取货员出发','取货员接单','申请审批通过','发起退货申请','退货中','退货完成'];
 const progressColumns = [
 	{title:'时间',dataIndex:'createdAt'},
 	{title:'当前进度',dataIndex:'status',render:val=>progressMap[val]},
-	{title:'状态',dataIndex:'status',render:val=><Badge status={progressMap[val]} text={status[val]}/>},
+	{title:'状态',dataIndex:'status',render:val=><Badge status={statusMap[val]} text={status[val]}/>},
 	{title:'操作员',dataIndex:'owner'}
 ]
 const initTotalList = (props)=>{
@@ -171,6 +171,7 @@ export default class BasicProfile extends PureComponent{
 							columns={progressColumns}
 							dataSource={list}
 							pagination={pagination}
+							onChange={this.handleTableChange}
 							// onChange={this.handleTableChange}
 						/>
 					</div>

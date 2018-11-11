@@ -1,0 +1,17 @@
+@import "../../sass/includes/settings";
+.pageHeader{
+  .header-main{
+    .text-secondary{color: $color-gray-a;}
+    .heading{color: $color-gray-3;font-size: 2rem;}
+  }
+  .tabs{
+    .ant-tabs-bar{
+      border-bottom: none;margin-bottom: 1px;
+
+    }
+  }
+}
+
+.noData{
+  font-size: 1.6rem;line-height: 48px;color: $color-gray-9;text-align: center;
+}

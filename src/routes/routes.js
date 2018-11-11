@@ -30,6 +30,10 @@ import Exception500 from "../pages/Exception/500";
 
 import Center from "../pages/Account/Center";
 import Settings from "../pages/Account/Settings";
+import BasicView from "../pages/Account/Settings/BasicView";
+import SecurityView from "../pages/Account/Settings/SecurityView";
+import BindingView from "../pages/Account/Settings/BindingView";
+import NotificationView from "../pages/Account/Settings/NotificationView";
 
 //按需加载
 const lazyLoad = (comp) => (props) => (
@@ -220,7 +224,33 @@ export default [
 						path:'/account/settings',
 						name:'settings',
 						component:lazyLoad(Settings),
-						exact:true
+						// exact:true,
+						routes:[
+							{
+								path:'/account/settings/base',
+								name:'base',
+								component:lazyLoad(BasicView),
+								exact:true
+							},
+							{
+								path:'/account/settings/security',
+								name:'security',
+								component:lazyLoad(SecurityView),
+								exact:true
+							},
+							{
+								path:'/account/settings/binding',
+								name:'binding',
+								component:lazyLoad(BindingView),
+								exact:true
+							},
+							{
+								path:'/account/settings/notification',
+								name:'notification',
+								component:lazyLoad(NotificationView),
+								exact:true
+							}
+						]
 					}
 				]
 			}

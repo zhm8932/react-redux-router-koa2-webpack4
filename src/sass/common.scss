@@ -24,52 +24,77 @@
 .red{color: $color-red-f00;}
 
 //间距
+.ml-ss{margin-left: $w-ss}    //8
 .ml-xs{margin-left: $w-xs}    //8
 .ml-sm{margin-left: $w-sm}    //12
 .ml-md{margin-left: $w-md}    //16
 .ml-lg{margin-left: $w-lg}    //24
 
+.mr-ss{margin-right: $w-ss}
 .mr-xs{margin-right: $w-xs}
 .mr-sm{margin-right: $w-sm}
 .mr-md{margin-right: $w-md}
 .mr-lg{margin-right: $w-lg}
 
+.mb-ss{margin-bottom: $w-ss}
 .mb-xs{margin-bottom: $w-xs}
 .mb-sm{margin-bottom: $w-sm}
 .mb-md{margin-bottom: $w-md}
 .mb-lg{margin-bottom: $w-lg}
 
+.mt-ss{margin-top: $w-ss}
 .mt-xs{margin-top: $w-xs}
 .mt-sm{margin-top: $w-sm}
 .mt-md{margin-top: $w-md}
 .mt-lg{margin-top: $w-lg}
 
+.pl-ss{padding-left: $w-ss}
 .pl-xs{padding-left: $w-xs}
 .pl-sm{padding-left: $w-sm}
 .pl-md{padding-left: $w-md}
 .pl-lg{padding-left: $w-lg}
 
+.pr-ss{padding-right: $w-ss}
 .pr-xs{padding-right: $w-xs}
 .pr-sm{padding-right: $w-sm}
 .pr-md{padding-right: $w-md}
 .pr-lg{padding-right: $w-lg}
 
+.pt-ss{padding-top: $w-ss}
 .pt-xs{padding-top: $w-xs}
 .pt-sm{padding-top: $w-sm}
 .pt-md{padding-top: $w-md}
 .pt-lg{padding-top: $w-lg}
 
+.pb-ss{padding-bottom: $w-ss}
 .pb-xs{padding-bottom: $w-xs}
 .pb-sm{padding-bottom: $w-sm}
 .pb-md{padding-bottom: $w-md}
 .pb-lg{padding-bottom: $w-lg}
 
 //左右间距
+.mlr-ss{margin-left: $w-ss;margin-right: $w-ss}   //4
 .mlr-xs{margin-left: $w-xs;margin-right: $w-xs}   //8
 .mlr-sm{margin-left: $w-sm;margin-right: $w-sm}   //12
 .mlr-md{margin-left: $w-md;margin-right: $w-md}   //16
 .mlr-lg{margin-left: $w-lg;margin-right: $w-lg}   //24
 
+//上下间距
+.mtb-ss{margin-top: $w-ss;margin-bottom: $w-ss}   //4
+.mtb-xs{margin-top: $w-xs;margin-bottom: $w-xs}   //8
+.mtb-sm{margin-top: $w-sm;margin-bottom: $w-sm}   //12
+.mtb-md{margin-top: $w-md;margin-bottom: $w-md}   //16
+.mtb-lg{margin-top: $w-lg;margin-bottom: $w-lg}   //24
+
+
+//上下内间距
+.ptb-ss{padding-top: $w-ss;padding-bottom: $w-ss}
+.ptb-xs{padding-top: $w-xs;padding-bottom: $w-xs}
+.ptb-sm{padding-top: $w-sm;padding-bottom: $w-sm}
+.ptb-md{padding-top: $w-md;padding-bottom: $w-md}
+.ptb-lg{padding-top: $w-lg;padding-bottom: $w-lg}
+
+.plr-ss{padding-left: $w-ss;padding-right: $w-ss}
 .plr-xs{padding-left: $w-xs;padding-right: $w-xs}
 .plr-sm{padding-left: $w-sm;padding-right: $w-sm}
 .plr-md{padding-left: $w-md;padding-right: $w-md}

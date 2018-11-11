@@ -149,6 +149,10 @@ export default class PageHeader extends PureComponent{
 			</Breadcrumb>
 		);
 	};
+	onChange = key => {
+		const {onTabChange} = this.props;
+		onTabChange&&onTabChange(key);
+	}
 	render(){
 		const {
 			title,
@@ -187,17 +191,30 @@ export default class PageHeader extends PureComponent{
 						avatar={{size:'large'}}
 					>
 						{breadcrumb}
-						<div className='detail'>
+						<div className='header-detail'>
 							{logo&&<div className='logo'>{logo}</div>}
-							<div className="row">
-								{title&&<h1 className='title'>{title}</h1>}
-								{action&&<div className='action'>{action}</div>}
-							</div>
-							<div className="row">
-								{content&&<div className='content'>{content}</div>}
-								{extraContent&&<div className='extraContent'>{extraContent}</div>}
+							<div className='header-main'>
+								<div className="header-row">
+									{title&&<h1 className='title'>{title}</h1>}
+									{action&&<div className='action'>{action}</div>}
+								</div>
+								<div className="header-row">
+									{content&&<div className='content'>{content}</div>}
+									{extraContent&&<div className='extraContent'>{extraContent}</div>}
+								</div>
 							</div>
 						</div>
+						{ tabList&&tabList.length ? (
+							<Tabs
+								className='tabs'
+								onChange={this.onChange}
+							>
+								{tabList.map(item=>(
+									<TabPane key={item.key} tab={item.tab}/>
+								))}
+							</Tabs>
+						) : null }
+
 					</Skeleton>
 				</div>
 			</div>

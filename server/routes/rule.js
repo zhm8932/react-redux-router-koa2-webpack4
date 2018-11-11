@@ -7,6 +7,7 @@ const parse = qs.parse;
 
 // mock tableListDataSource
 const owners = ['曲丽丽','库珊珊','李冰冰','曾芸芸','乐晓晓','唐晓三','王钰钰','笑三笑','古天乐','夏雨']
+const types = ['订购关系生效','财务复审','部门初审','提交订单','创建订单','修改订单','确认订单','支付','删除订单','确认合同']
 let tableListDataSource = [];
 for (let i = 1; i < 46; i += 1) {
 	tableListDataSource.push({
@@ -20,6 +21,7 @@ for (let i = 1; i < 46; i += 1) {
 		name: `TradeCode ${i}`,
 		title: `一个任务名称 ${i}`,
 		owner: owners[(Math.floor(Math.random() * 10)%10)],
+		type: types[(Math.floor(Math.random() * 10)%10)],
 		desc: '这是一段描述',
 		callNo: Math.floor(Math.random() * 9000000),
 		status: Math.floor(Math.random() * 10) % 6,
@@ -94,12 +96,17 @@ function getRule(ctx) {
 		pageSize = params.pageSize * 1;
 	}
 
+	let current = parseInt(params.currentPage, 10) || 1;
+	let curDataSource = params.isPaging
+		?dataSource.slice(current*pageSize,current*pageSize+pageSize)
+		:dataSource;
+	// let curDataSource = dataSource.slice((current-1)*pageSize,current*pageSize+1); //当前页数据
 	const result = {
-		list: dataSource,
+		list: curDataSource,
 		pagination: {
 			total: dataSource.length,
 			pageSize,
-			current: parseInt(params.currentPage, 10) || 1,
+			current
 		},
 	};
 
