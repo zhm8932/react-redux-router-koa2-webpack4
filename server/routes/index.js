@@ -38,18 +38,7 @@ router.post('/form', function (ctx, next) {
 	}
 });
 
-
-/*router.post('/uploadFile',(ctx)=>{
-	console.log("body:",ctx.request.body);
-	console.log("files:",ctx.request.files);
-	const file = ctx.request.files.file;    // 获取上传文件
-	const reader = fs.createReadStream(file.path);    // 创建可读流
-	const ext = file.name.split('.').pop();        // 获取上传文件扩展名
-	const upStream = fs.createWriteStream(`upload/${Math.random().toString()}.${ext}`);        // 创建可写流
-	reader.pipe(upStream);    // 可读流通过管道写入可写流
-	ctx.body = '上传成功';
-})*/
-
+//文件上传
 router.post('/uploadFile',(ctx)=>{
 	// console.log("files:",ctx.request.files);
 	const file = ctx.request.files.file; //获取上传的文件
@@ -57,11 +46,21 @@ router.post('/uploadFile',(ctx)=>{
 	// 创建可读流
 	const reader  =fs.createReadStream(file.path);
 	const ext = file.name.split('.').pop(); // 获取上传文件扩展名
-	// let filePath = path.join(__dirname,'../../public/upload/'+`/${file.name}`);
-	// let filePath = path.join(__dirname,'../../public/upload/'+`/${moment(new Date()).format('YYYYMMDDhhmmss')}${Math.random()*1000}.${ext}`);
-	let filePath = path.join('/upload'+`/${moment(new Date()).format('YYYYMMDDhhmmss')}${Math.floor(Math.random()*10000)}.${ext}`);
+	let uploadPathRoot = path.join(path.join(ROOT,'/public','/upload'));
+
+	//生成文件上传目录
+	if(!fs.existsSync(uploadPathRoot)) {
+		fs.mkdirSync(uploadPathRoot);
+	}
+	let uploadPath = path.join(path.join(uploadPathRoot,moment(new Date()).format('YYYYMMDD')));
+	if(!fs.existsSync(uploadPath)) {
+		fs.mkdirSync(uploadPath);
+	}
+	//文件绝对路径
+	let absolutePath = path.join(uploadPath,`/${moment(new Date()).format('YYYYMMDDhhmmss')}${Math.floor(Math.random()*10000)}.${ext}`);
+	console.log("absolutePath:",absolutePath)
 	// 创建可写流
-	const upStream = fs.createWriteStream(path.join(ROOT,'/public',filePath));
+	const upStream = fs.createWriteStream(absolutePath);
 
 	//删除临时文件
 	reader.on('end',function () {
@@ -70,9 +69,10 @@ router.post('/uploadFile',(ctx)=>{
 	})
 	// 可读流通过管道写入可写流
 	reader.pipe(upStream);
+	let filePathArr = absolutePath.split('public');
 	ctx.body = {
 		message:'上传成功',
-		file:filePath
+		file:filePathArr[1]
 	};
 })
 /*

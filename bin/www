@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('demo:server');
 var http = require('http');
+const internalIp = require('internal-ip')
 
 /**
  * Get port from environment and store in Express.
@@ -27,6 +28,9 @@ var server = http.createServer(app.callback());
 
 server.listen(port,function () {
 	console.log("server is start on port:",port)
+	/*internalIp.v4().then(ip => {
+		console.log('network:',`http://${ip}:${port}`);
+	});*/
 });
 server.on('error', onError);
 server.on('listening', onListening);

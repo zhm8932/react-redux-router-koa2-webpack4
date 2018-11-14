@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Fragment} from "react";
 import PhoneView from '../../../components/PhoneView'
 import './index.scss'
+import {handleBasic} from '../../../redux/FormRedux';
 
 const FormItem = Form.Item;
 
@@ -44,7 +45,9 @@ const validatorPhone = (rule, value, callback) => {
 	}
 	callback();
 };
-@connect()
+@connect(({form})=>({
+	data:form.step
+}))
 @Form.create()
 export default class BasicView extends React.Component{
 	constructor(props){
@@ -81,6 +84,12 @@ export default class BasicView extends React.Component{
 		const {dispatch,form} = this.props;
 		form.validateFields((err,values)=>{
 			console.log("err:",err,"values:::",values)
+			if(!err){
+				dispatch(handleBasic({url:'/form',method:'POST',data:values}))
+				.then(json=>{
+					console.log("json::::",json)
+				})
+			}
 		})
 	}
 	handlePhoneChange = value=>{
@@ -97,7 +106,7 @@ export default class BasicView extends React.Component{
 	handlePreview = (file)=>{
 		console.log("handlePreview-file::::",file)
 		this.setState({
-			previewImage: file.url || file.thumbUrl,
+			previewImage: file.url || file.thumbUrl||file.response&&file.response.file,
 			previewVisible: true,
 		});
 	}

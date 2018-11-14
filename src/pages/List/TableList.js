@@ -455,6 +455,7 @@ export default class TableList extends PureComponent{
 			key  : fields.key,
 
 		};
+		console.log("payload::::",payload)
 		dispatch(handleRules({
 			url:'/rule/handleRule',
 			method:'put',
