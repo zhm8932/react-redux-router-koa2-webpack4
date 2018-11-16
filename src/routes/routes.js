@@ -5,7 +5,10 @@ import BasicLayout from "../layouts/BasicLayout";
 import UserLayout from "../layouts/UserLayout";
 import Home from "../pages/Home";
 import News from "../pages/News";
+
 import Analysis from "../pages/Dashboard/Analysis";
+import Monitor from "../pages/Dashboard/Monitor";
+import Workplace from "../pages/Dashboard/Workplace";
 import Login from "../pages/User/Login";
 
 import BasicForm from '../pages/Forms/BasicForm';
@@ -86,6 +89,31 @@ export default [
 				component:lazyLoad(News),
 				name:'news',
 				exact: true
+			},
+			{
+				path:'/dashboard',
+				name:'dashboard',
+				icon:'dashboard',
+				routes:[
+					{
+						path:'/dashboard/analysis',
+						name:'analysis',
+						component:lazyLoad(Analysis),
+						exact:true
+					},
+					{
+						path:'/dashboard/monitor',
+						name:'monitor',
+						component:lazyLoad(Monitor),
+						exact:true
+					},
+					{
+						path:'/dashboard/workplace',
+						name:'workplace',
+						component:lazyLoad(Workplace),
+						exact:true
+					}
+				]
 			},
 			{
 				path:'/form',

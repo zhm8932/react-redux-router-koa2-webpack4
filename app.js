@@ -12,6 +12,7 @@ const utils = require('./server/utils');
 const index = require('./server/routes/index')
 const users = require('./server/routes/users')
 const rule = require('./server/routes/rule')
+const charts = require('./server/routes/charts')
 
 const logUtil = require('./server/utils/logger');
 const proxy = require('./server/utils/proxy');
@@ -34,11 +35,7 @@ global.proxys = proxy;       	//封装HTTP请求
 })*/
 
 // middlewares
-app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
-}))
-
-app.use(json());
+//koaBody必须放在bodyparser前面
 app.use(koaBody({
 	multipart: true,
 	formidable:{
@@ -47,6 +44,12 @@ app.use(koaBody({
 		maxFileSize: 500*1024*1024    // 设置上传文件大小最大限制，默认2M
 	}
 }))
+
+app.use(bodyparser({
+  enableTypes:['json', 'form', 'text']
+}))
+
+app.use(json());
 
 // app.use(logger())
 console.log("__dirname:",__dirname)
@@ -78,6 +81,7 @@ app.use(async(ctx, next) =>{
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
 app.use(rule.routes(), rule.allowedMethods());
+app.use(charts.routes(), charts.allowedMethods());
 
 app.use(async (ctx, next)=>{
 	console.log("ctx::::::::::::",JSON.stringify(ctx))

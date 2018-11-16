@@ -1,4 +1,4 @@
-import {Button,Form,Input,Select,Upload,Icon,Modal} from 'antd';
+import {Button,Form,Input,Select,Upload,Icon,Modal,message} from 'antd';
 import {connect} from 'react-redux';
 import {Fragment} from "react";
 import PhoneView from '../../../components/PhoneView'
@@ -7,7 +7,18 @@ import {handleBasic} from '../../../redux/FormRedux';
 
 const FormItem = Form.Item;
 
-const AvatarView = ({avatar,fileList,handleChange,previewVisible,previewImage,handlePreview,handleCancel}) =>(
+const AvatarView = ({
+		avatar,
+		fileList,
+		handleChange,
+		beforeUpload,
+		previewVisible,
+		previewImage,
+		handlePreview,
+		handleCancel,
+		handleRemove,
+
+}) =>(
 	<Fragment>
 		<div className="avatar_title">头像</div>
 		<div className="avatar">
@@ -15,10 +26,12 @@ const AvatarView = ({avatar,fileList,handleChange,previewVisible,previewImage,ha
 		</div>
 		<Upload
 			// listType="picture-card"
-			fileList={fileList}
+			// fileList={fileList}
 			action='/uploadFile'
 			onChange={handleChange}
 			onPreview = {handlePreview}
+			beforeUpload = {beforeUpload}
+			onRemove  = {handleRemove}
 		>
 		{
 			fileList.length>=3
@@ -88,6 +101,11 @@ export default class BasicView extends React.Component{
 				dispatch(handleBasic({url:'/form',method:'POST',data:values}))
 				.then(json=>{
 					console.log("json::::",json)
+					if(json.success){
+						message.success("基本信息提交成功")
+					}else{
+						message.error("基本信息提交失败")
+					}
 				})
 			}
 		})
@@ -100,8 +118,17 @@ export default class BasicView extends React.Component{
 	}
 	handleChange=({ file, fileList })=>{
 		console.log("onChange-file:",file)
-		console.log("fileList:",fileList)
-		this.setState({fileList})
+		console.log("fileList::::1",fileList)
+		//文件有上传
+		let newFileList = fileList.filter(file => {
+			console.log("file::::::,",file)
+			return file&&file.response
+		});
+		newFileList = [...this.state.fileList,...newFileList]
+		console.log("fileList::::2",newFileList)
+		this.setState({fileList: newFileList});
+		return newFileList;
+		// this.setState({fileList})
 	}
 	handlePreview = (file)=>{
 		console.log("handlePreview-file::::",file)
@@ -114,6 +141,23 @@ export default class BasicView extends React.Component{
 		this.setState({
 			previewVisible:false
 		})
+	}
+	handleRemove =(f)=>{
+		console.log("f:",f)
+		let fileList = this.state.fileList.filter(file=>{
+			return file.uid==f.uid
+		})
+		this.setState({fileList})
+	}
+	beforeUpload =(file)=>{
+		const maxFileSize = 0.2;
+		if (maxFileSize) {
+			const isLtMax = file.size / 1024 / 1024 < maxFileSize;
+			if (!isLtMax) {
+				message.error(`文件大小超过${maxFileSize}M限制`);
+			}
+			return isLtMax;
+		}
 	}
 	render(){
 		const {
@@ -202,6 +246,8 @@ export default class BasicView extends React.Component{
 						handleChange={this.handleChange}
 						handlePreview={this.handlePreview}
 						handleCancel={this.handleCancel}
+						beforeUpload={this.beforeUpload}
+						handleRemove={this.handleRemove}
 					/>
 				</div>
 			</div>
