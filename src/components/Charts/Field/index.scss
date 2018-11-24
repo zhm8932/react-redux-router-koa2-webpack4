@@ -1,0 +1,9 @@
+@import "../../../sass/includes/settings";
+.field{
+  white-space: nowrap;overflow: hidden;text-overflow: ellipsis;
+  .label,.value{font-size: 1.4rem;line-height: 22px;
+  }
+  .value {
+    margin-left: 8px;
+  }
+}

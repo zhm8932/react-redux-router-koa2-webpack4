@@ -1,0 +1,17 @@
+@import "../../sass/includes/settings";
+
+.trendItem{
+  display: inline-block;font-size: 1.4rem;
+  .up, .down{
+    margin-left: $w-ss;
+    i{
+      font-size: 1.2rem;transform: scale(0.8);
+    }
+  }
+  .up{
+    color: $color-red-f00;
+  }
+  .down{
+    color: $color-green-6;
+  }
+}

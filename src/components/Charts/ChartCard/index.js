@@ -16,6 +16,7 @@ export default class ChartCard extends PureComponent{
 			default:
 				totalDom = <div className="total">{total}</div>
 		}
+		return totalDom
 	}
 	render(){
 		const {
@@ -46,7 +47,9 @@ export default class ChartCard extends PureComponent{
 							{this.renderTotal(total)}
 						</div>
 					</div>
-					{children&&(<div className="content">{children}</div>)}
+					{children&&(<div className="content" style={contentHeight?{height:contentHeight}:{}}>
+						<div className={contentHeight&&'contentFixed'}>{children}</div>
+					</div>)}
 					{footer&&(<div className={classNames('footer',{
 						footerMargin:!children
 					})}>{footer}</div>)}
