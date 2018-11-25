@@ -4,6 +4,7 @@ const views = require('koa-views')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
+const koaBody = require('koa-body')
 const favicon = require('koa-favicon');
 const path = require('path')
 
@@ -11,6 +12,7 @@ const utils = require('./server/utils');
 const index = require('./server/routes/index')
 const users = require('./server/routes/users')
 const rule = require('./server/routes/rule')
+const charts = require('./server/routes/charts')
 
 const logUtil = require('./server/utils/logger');
 const proxy = require('./server/utils/proxy');
@@ -33,10 +35,22 @@ global.proxys = proxy;       	//封装HTTP请求
 })*/
 
 // middlewares
+//koaBody必须放在bodyparser前面
+app.use(koaBody({
+	multipart: true,
+	formidable:{
+		// uploadDir: path.join(__dirname, 'public/upload'),
+		keepExtensions:true,
+		maxFileSize: 500*1024*1024    // 设置上传文件大小最大限制，默认2M
+	}
+}))
+
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
-app.use(json())
+
+app.use(json());
+
 // app.use(logger())
 console.log("__dirname:",__dirname)
 app.use(require('koa-static')(__dirname + '/public'))
@@ -53,7 +67,6 @@ app.use(async (ctx, next) => {
   const ms = new Date() - start;
   // logAccess.info(`${ctx.method} ${ctx.url} - ${ms} --access `);
   logger.info(`${ctx.method} ${ctx.url} - ${ms}ms`);
-  // console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
 app.use(async(ctx, next) =>{
@@ -65,12 +78,13 @@ app.use(async(ctx, next) =>{
 
 
 // routes
-app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
-app.use(rule.routes(), rule.allowedMethods())
+app.use(index.routes(), index.allowedMethods());
+app.use(users.routes(), users.allowedMethods());
+app.use(rule.routes(), rule.allowedMethods());
+app.use(charts.routes(), charts.allowedMethods());
 
 app.use(async (ctx, next)=>{
-	console.log("333333333333333:",JSON.stringify(ctx))
+	console.log("ctx::::::::::::",JSON.stringify(ctx))
 	//处理xhr请求
 	if (utils.isAjax(ctx.request)) {
 		console.log("AJAX请求！！！")
@@ -90,8 +104,9 @@ const handler = async (ctx, next) => {
 	} catch (err) {
 		console.log("handler-err:",err)
 		ctx.response.status = err.statusCode || err.status || 500;
-		ctx.response.body = {
-			message: err.message
+		// ctx.response.body = {
+		ctx.body = {
+			message: err.message||'系统错误！！！'
 		};
 	}
 };
@@ -99,15 +114,17 @@ const handler = async (ctx, next) => {
 app.use(handler);
 
 // error-handling
-app.on('error', (err, ctx) => {
+app.on('error',async (err, ctx) => {
 	logErrors.error('server err:',JSON.stringify(err));
 	let error = utils.handlerError(err,ctx);
 	// ctx.body = error;
 
 	ctx.response.status = err.statusCode || err.status || 500;
-	ctx.response.body = {
-		message: err.message
-	};
+	ctx.body = error
+	/*ctx.response.body = {
+		message: err.message,
+		error:error
+	};*/
 });
 
 module.exports = app;

@@ -6,6 +6,8 @@ const qs = require('querystring');
 const parse = qs.parse;
 
 // mock tableListDataSource
+const owners = ['曲丽丽','库珊珊','李冰冰','曾芸芸','乐晓晓','唐晓三','王钰钰','笑三笑','古天乐','夏雨']
+const types = ['订购关系生效','财务复审','部门初审','提交订单','创建订单','修改订单','确认订单','支付','删除订单','确认合同']
 let tableListDataSource = [];
 for (let i = 1; i < 46; i += 1) {
 	tableListDataSource.push({
@@ -18,10 +20,14 @@ for (let i = 1; i < 46; i += 1) {
 		][i % 2],
 		name: `TradeCode ${i}`,
 		title: `一个任务名称 ${i}`,
-		owner: '曲丽丽',
+		owner: owners[(Math.floor(Math.random() * 10)%10)],
+		type: types[(Math.floor(Math.random() * 10)%10)],
 		desc: '这是一段描述',
-		callNo: Math.floor(Math.random() * 1000),
-		status: Math.floor(Math.random() * 10) % 4,
+		callNo: Math.floor(Math.random() * 9000000),
+		status: Math.floor(Math.random() * 10) % 6,
+		price: Math.floor(Math.random() * 500).toFixed(2),
+		num: Math.floor(Math.random() * 100),
+		barcode: Math.floor(Math.random() * 6000000000000000),
 		updatedAt: new Date(`2017-07-${Math.floor(i / 2) + 1}`),
 		createdAt: new Date(`2017-07-${Math.floor(i / 2) + 1}`),
 		progress: Math.ceil(Math.random() * 100),
@@ -44,6 +50,26 @@ function getRule(ctx) {
 			}
 			return prev[s[0]] - next[s[0]];
 		});
+	}
+	if (params.price){
+		const price = params.price.split('_');
+		console.log("price:",price)
+		dataSource = dataSource.sort((prev,next)=>{
+			if (price[1] === 'descend') {
+				return next[price[0]] - prev[price[0]];
+			}
+			return prev[price[0]] - next[price[0]];
+		})
+	}
+	if (params.num){
+		const arr = params.num.split('_');
+		console.log("arr:",arr)
+		dataSource = dataSource.sort((prev,next)=>{
+			if (arr[1] === 'descend') {
+				return next[arr[0]] - prev[arr[0]];
+			}
+			return prev[arr[0]] - next[arr[0]];
+		})
 	}
 
 	if (params.status) {
@@ -70,12 +96,17 @@ function getRule(ctx) {
 		pageSize = params.pageSize * 1;
 	}
 
+	let current = parseInt(params.currentPage, 10) || 1;
+	let curDataSource = params.isPaging
+		?dataSource.slice(current*pageSize,current*pageSize+pageSize)
+		:dataSource;
+	// let curDataSource = dataSource.slice((current-1)*pageSize,current*pageSize+1); //当前页数据
 	const result = {
-		list: dataSource,
+		list: curDataSource,
 		pagination: {
 			total: dataSource.length,
 			pageSize,
-			current: parseInt(params.currentPage, 10) || 1,
+			current
 		},
 	};
 
@@ -114,7 +145,7 @@ function postRule(ctx) {
 				][i % 2],
 				name: `TradeCode ${i}`,
 				title: `一个任务名称 ${i}`,
-				owner: '曲丽丽',
+				owner: owner||'曲丽丽',
 				desc,
 				callNo: Math.floor(Math.random() * 1000),
 				status: Math.floor(Math.random() * 10) % 2,

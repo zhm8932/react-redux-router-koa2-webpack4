@@ -303,15 +303,23 @@ export default class BasicList extends PureComponent{
 			</div>
 		)
 		return (
-			<PageHeaderWrapper>
+			<PageHeaderWrapper
+				title="多状态列表"
+			>
 				<div className='standardList'>
 					<Card bordered={false}>
 						<Row>
 							<Col sm={8} xs={24}>
-								<TaskItem title="我的待办" value="8个任务" bordered/>
+								<TaskItem title="已完成" value={
+									<span>
+										{list.filter(item=>item.status===0).length}个任务
+									</span>
+								} bordered/>
 							</Col>
 							<Col sm={8} xs={24}>
-								<TaskItem title="本周任务平均处理时间" value="32分钟" bordered/>
+								<TaskItem title="进行中" value={
+									<span>{list.filter(item=>item.status===1).length}个任务</span>
+								} bordered/>
 							</Col>
 							<Col sm={8} xs={24}>
 								<TaskItem title="本周完成任务数" value="24个任务" />

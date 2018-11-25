@@ -6,16 +6,19 @@ const path = require('path');
 const {ROOT,PUBLIC_PATH} = require('./commonPath');
 
 module.exports = {
-	mode: 'development', // development
+	mode: 'production', // development  |  production
 	entry:{
-		// vendors:['jquery','react','react-dom'],
-		vendors:['react','react-dom'],
+		// vendors:['react','react-dom'],
+		vendors:['react','react-dom','moment'],
 	},
 	output:{
 		path: path.join(ROOT,'public'),
 		filename: "js/[name].js",
 		library:'[name]_library'
 
+	},
+	optimization:{
+		minimize: true,
 	},
 	plugins:[
 		new webpack.DefinePlugin({

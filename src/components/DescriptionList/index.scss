@@ -1,0 +1,14 @@
+@import "../../sass/includes/settings";
+
+.descriptionList{
+  .term{
+    display: table-cell;padding-bottom: $w-xs;
+    &:after{
+      content: ':';
+      padding:0 8px 0 2px;
+    }
+  }
+  .detail{
+    display: table-cell;color: $color-gray-9;padding-bottom: $w-xs;
+  }
+}

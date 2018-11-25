@@ -8,8 +8,21 @@
     max-width: 1200px;
     margin: auto;
   }
-  .detail {
-
+  .header-detail {
+    display: flex;
+    .logo{
+      flex: 0 1 auto;margin-right: $w-md;
+    }
+  }
+  .header-row {
+    display: flex;
+    .title{flex: auto;}
+    .content{
+      flex: auto;
+    }
+    .extraContent{
+      flex: 0 1 auto;
+    }
   }
 
   .row {
@@ -63,10 +76,10 @@
     }
   }
 
-  .title,
+ /* .title,
   .content {
-
-  }
+    display: flex;
+  }*/
 
   .action,
   .extraContent,
@@ -118,10 +131,6 @@
 
 @media screen and (max-width: $screen-md) {
   .pageHeader {
-    .row {
-      display: block;
-    }
-
     .action,
     .extraContent {
       margin-left: 0;
@@ -132,7 +141,7 @@
 
 @media screen and (max-width: $screen-sm) {
   .pageHeader {
-    .detail {
+    .header-detail {
       display: block;
     }
   }

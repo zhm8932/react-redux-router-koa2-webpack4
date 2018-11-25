@@ -1,0 +1,9 @@
+@import "../../sass/includes/settings";
+.description-list{
+  h2{font-size: 1.6rem;margin-bottom: $w-md;}
+  .list{
+    li{
+      width: 33.3%;float: left;margin-bottom: $w-md;
+    }
+  }
+}

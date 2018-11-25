@@ -1,0 +1,16 @@
+@import "../../sass/includes/settings";
+
+.analysis-wrapper{
+  .trendText{
+    margin-left: $w-xs;
+  }
+  .chartCard{
+    .content{height: 46px}
+  }
+
+  .salesCard{
+    .ant-tabs-bar{padding-left: $w-md;}
+  }
+}
+
+

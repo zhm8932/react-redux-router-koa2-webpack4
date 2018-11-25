@@ -1,0 +1,52 @@
+@import "../../../sass/includes/settings";
+
+.setting-main{
+  background-color: $white;
+  display: flex;padding: $w-md 0;
+  .left-menu{
+    width: 224px;
+  }
+  .info-right{
+    padding: 8px 40px;flex: 1 1;
+    .title{
+      font-size: 2rem;margin-bottom: $w-sm;
+    }
+  }
+}
+
+.base-view{
+  display: flex;
+  .view-left{
+    max-width: 448px;
+    min-width: 300px;
+    .area_code{
+      max-width: 128px;
+      margin-right: 8px;
+    }
+    .phone_number{
+      width: calc(100% - 136px);
+    }
+  }
+  .view-right{
+    flex: 1 1;
+    padding-left: 104px;
+    .avatar{
+      width: 144px;height: 144px;display: block;margin-bottom: $w-sm;border-radius: 100%;
+      img{width: 100%;height:100%;}
+    }
+    .button_view{width: 144px;text-align: center;}
+  }
+}
+
+.binding-list{
+  .icons{
+    display: block;font-size: 48px;line-height: 48px;
+  }
+  .taobao{color: #ff4000;}
+  .alipay{color: #2eabff;}
+  .weibo{color: #de9018;}
+  .wechat{color: #319400;}
+  .qq{color: #333333;}
+  .zhihu{color:#6173d4;}
+  .apple,.dingding{color: $color-gray-9;}
+}

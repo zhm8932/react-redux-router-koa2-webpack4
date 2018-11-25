@@ -22,7 +22,7 @@ function formatter(data, parentPath = '', parentAuthority, parentName) {
 		} else if (parentName) {
 			locale = parentName;
 		}
-		console.log("local:",locale)
+		// console.log("local:",locale)
 		const result = {
 			...item,
 			locale,
@@ -55,7 +55,7 @@ class BasicLayout extends React.PureComponent{
 		const mergeMenuAndRouter = data => {
 			console.log("menuItem.data:",data)
 			data.forEach(menuItem => {
-				console.log("menuItem.children:",menuItem.children,"menuItem::",menuItem)
+				// console.log("menuItem.children:",menuItem.children,"menuItem::",menuItem)
 				if (menuItem.children) {
 					mergeMenuAndRouter(menuItem.children);
 				}
@@ -79,6 +79,7 @@ class BasicLayout extends React.PureComponent{
 		const {
 			route:{routes}
 		} = this.props;
+		console.log("routes:::",routes)
 		return formatter(routes)||{}
 	}
 	getPageTitle = pathname =>{

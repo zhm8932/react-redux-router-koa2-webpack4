@@ -6,6 +6,7 @@ import 'whatwg-fetch'
 export const FETCH_API = Symbol('Fetch API');
 
 const fetchs = ({url,method='GET',mode='',data={}})=>{
+	console.log("fetch:::::url:",url,'method:',method)
 	let params = {};
 	//处理data
 	for(let key in data){
@@ -20,8 +21,6 @@ const fetchs = ({url,method='GET',mode='',data={}})=>{
 		query += `${i}=${params[i]}&`;
 	}
 	method = method.toUpperCase();
-	// console.log("query:",query)
-
 	let options = {
 		method,
 		mode:mode,

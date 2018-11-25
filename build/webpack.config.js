@@ -54,7 +54,7 @@ module.exports = {
 			libs:path.join(SRC_PATH,'js/libs'),
 			sass:path.join(SRC_PATH,'sass'),
 			views:path.join(ROOT,'views'),
-			moment:'moment/min/moment-with-locales.min.js',
+			// moment:'moment/min/moment-with-locales.min.js',
 		}
 	},
 	module: {
@@ -161,21 +161,29 @@ module.exports = {
 			maxInitialRequests: 3,	//entry文件请求的chunks不应该超过此值（请求过多，耗时）
 			name: false,			//生成文件名
 			cacheGroups: {			//自定义配置主要使用它来决定生成的文件
-				vendors: {
-					name: 'vendors',
-					chunks: 'initial',
-					priority: -10,
+				vendor: {
+					name: 'vendor',
+					// chunks: 'initial',  //initial(初始块)、async(按需加载块)、all(全部块)，默认为all
+					chunks: 'all',  //initial(初始块)、async(按需加载块)、all(全部块)，默认为all
+					// priority: -10,
 					reuseExistingChunk: false,
 					test: /node_modules\/(.*)\.js/
 				},
-				common: {// ‘src/js’ 下的js文件
+				commons: {// ‘src/js’ 下的js文件
 					chunks:"all",
-					test:/[\\/]src[\\/]js[\\/]/,//也可以值文件/[\\/]src[\\/]js[\\/].*\.js/,
-					name: "common", //生成文件名，依据output规则
+					test:/[\\/]src[\\/]/,//也可以值文件/[\\/]src[\\/]js[\\/].*\.js/,
+					name: "commons", //生成文件名，依据output规则
 					minChunks: 2,
 					maxInitialRequests: 5,
 					minSize: 0,
 					priority:1
+				},
+				styles: {
+					name: 'styles',
+					test: /\.css$/,
+					chunks: 'all',
+					minChunks: 2,
+					enforce: true
 				}
 			}
 		}

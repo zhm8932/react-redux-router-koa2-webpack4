@@ -6,13 +6,16 @@ $color-gray-3:#333;
 $color-gray-6:#666;
 $color-gray-9:#999;
 $color-gray-c:#ccc;
+$color-gray-a:#aaa;
 $color-gray-f0:#f0f2f5;   //灰色背景
+$color-gray-e8:#e8e8e8;   //灰色背景
 
 $color-gray-f6:#f6f6f6;
 
 $color-orange-e6a:#e6a34f;  //主色
 $color-red-f00:#ff6555;     //提示色
 $color-blue-4c7:#4c7ee9;     //提示色
+$color-green-6: #52c41a;   //绿色
 
 $primary-color          : $color-blue-4c7;
 $info-color             : $color-blue-4c7;
@@ -20,7 +23,7 @@ $success-color          : #52c41a;
 $processing-color       : $color-blue-4c7;
 $error-color            : $color-red-f00;
 $highlight-color        : $color-red-f00;
-//$warning-color          : $gold-6;
+$warning-color          : #ff0000;
 $normal-color           : #d9d9d9;
 
 
@@ -98,3 +101,4 @@ $w-lg   : 24px;     // containers
 $w-md   : 16px;     // small containers and buttons
 $w-sm   : 12px;     // Form controls and items
 $w-xs   : 8px;      // small items
+$w-ss   : 4px;      // super small items

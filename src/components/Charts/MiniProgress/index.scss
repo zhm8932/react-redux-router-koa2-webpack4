@@ -1,0 +1,14 @@
+@import "../../../sass/includes/settings";
+.miniProgress{
+  position: relative;padding: 5px 0; width: 100%;
+  .target{
+    position: absolute;top: 0;bottom: 0;width: 5px;z-index: 9;
+    span{
+      position: absolute;width: 2px;height: 5px;top: 0px;left: 0px;
+      &:last-child{top: auto;bottom: 0}
+    }
+  }
+  .progressWrap{
+    position: relative;background-color: $color-gray-f0;
+  }
+}

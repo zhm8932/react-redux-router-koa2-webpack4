@@ -1,0 +1,14 @@
+@import "../../sass/includes/settings";
+.exception{
+  display: flex;min-height: 500px;height: 80%;align-items: center;
+  .imgBlock{
+    flex: 0 0 62.5%;padding-right: 150px;
+    .imgEle{height: 360px;width: 100%;max-width: 430px;background-repeat: no-repeat;
+      background-size: contain;float: right;background-position: center;
+    }
+  }
+  .content{
+    h2{color: #434e59;font-size: 72px;line-height: 72px;margin-bottom:$w-lg;}
+    .desc{font-size: 24px;margin-bottom: $w-md;color: $color-gray-9;}
+  }
+}

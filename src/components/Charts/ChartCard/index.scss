@@ -1,0 +1,18 @@
+@import "../../../sass/includes/settings";
+
+.chartCard{
+  .chartTop{
+    .total{
+      font-size: 3rem;color: $color-gray-3;line-height: 38px;margin-top: 4px;
+    }
+  }
+  .content{
+    position: relative;margin-bottom: 12px;width: 100%;
+    .contentFixed{
+      position: absolute;left: 0px;width: 100%;bottom: 0;
+    }
+  }
+  .footer{
+    border-top: 1px solid $color-gray-e8;padding-top: 9px;margin-top: 8px;
+  }
+}

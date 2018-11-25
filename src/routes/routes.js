@@ -5,7 +5,10 @@ import BasicLayout from "../layouts/BasicLayout";
 import UserLayout from "../layouts/UserLayout";
 import Home from "../pages/Home";
 import News from "../pages/News";
+
 import Analysis from "../pages/Dashboard/Analysis";
+import Monitor from "../pages/Dashboard/Monitor";
+import Workplace from "../pages/Dashboard/Workplace";
 import Login from "../pages/User/Login";
 
 import BasicForm from '../pages/Forms/BasicForm';
@@ -19,6 +22,21 @@ import BasicList from '../pages/List/BasicList';
 import Result from "../components/Result";
 import Success from "../pages/Result/Success";
 import Error from "../pages/Result/Error";
+
+import BasicProfile from "../pages/Profile/BasicProfile";
+import AdvancedProfile from "../pages/Profile/AdvancedProfile";
+
+import Exception403 from "../pages/Exception/403";
+import Exception404 from "../pages/Exception/404";
+import Exception500 from "../pages/Exception/500";
+
+
+import Center from "../pages/Account/Center";
+import Settings from "../pages/Account/Settings";
+import BasicView from "../pages/Account/Settings/BasicView";
+import SecurityView from "../pages/Account/Settings/SecurityView";
+import BindingView from "../pages/Account/Settings/BindingView";
+import NotificationView from "../pages/Account/Settings/NotificationView";
 
 //按需加载
 const lazyLoad = (comp) => (props) => (
@@ -73,11 +91,31 @@ export default [
 				exact: true
 			},
 			{
-				path:'/dashboard/analysis',
-				component:lazyLoad(Analysis),
-				name:'analysis',
-				exact: true
-			},{
+				path:'/dashboard',
+				name:'dashboard',
+				icon:'dashboard',
+				routes:[
+					{
+						path:'/dashboard/analysis',
+						name:'analysis',
+						component:lazyLoad(Analysis),
+						exact:true
+					},
+					{
+						path:'/dashboard/monitor',
+						name:'monitor',
+						component:lazyLoad(Monitor),
+						exact:true
+					},
+					{
+						path:'/dashboard/workplace',
+						name:'workplace',
+						component:lazyLoad(Workplace),
+						exact:true
+					}
+				]
+			},
+			{
 				path:'/form',
 				icon:'form',
 				name:'form',
@@ -155,6 +193,92 @@ export default [
 						name:'fail',
 						component:lazyLoad(Error),
 						exact:true
+					}
+				]
+			},{
+				path:'/profile',
+				icon:'profile',
+				name:'profile',
+				routes:[
+					{
+						path:'/profile/basic',
+						name:'basic',
+						component:lazyLoad(BasicProfile),
+						exact:true
+					},
+					{
+						path:'/profile/advanced',
+						name:'advanced',
+						component:lazyLoad(AdvancedProfile),
+						exact:true
+					}
+				]
+			},,{
+				path:'/exception',
+				icon:'exception',
+				name:'exception',
+				routes:[
+					{
+						path:'/exception/403',
+						name:'not-permission',
+						component:lazyLoad(Exception403),
+						exact:true
+					},
+					{
+						path:'/exception/404',
+						name:'not-find',
+						component:lazyLoad(Exception404),
+						exact:true
+					},
+					{
+						path:'/exception/500',
+						name:'server-error',
+						component:lazyLoad(Exception500),
+						exact:true
+					}
+				]
+			},{
+				path:'/account',
+				icon:'user',
+				name:'account',
+				routes:[
+					{
+						path:'/account/center',
+						name:'center',
+						component:lazyLoad(Center),
+						exact:true
+					},
+					{
+						path:'/account/settings',
+						name:'settings',
+						component:lazyLoad(Settings),
+						// exact:true,
+						routes:[
+							{
+								path:'/account/settings/base',
+								name:'base',
+								component:lazyLoad(BasicView),
+								exact:true
+							},
+							{
+								path:'/account/settings/security',
+								name:'security',
+								component:lazyLoad(SecurityView),
+								exact:true
+							},
+							{
+								path:'/account/settings/binding',
+								name:'binding',
+								component:lazyLoad(BindingView),
+								exact:true
+							},
+							{
+								path:'/account/settings/notification',
+								name:'notification',
+								component:lazyLoad(NotificationView),
+								exact:true
+							}
+						]
 					}
 				]
 			}

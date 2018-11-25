@@ -34,6 +34,7 @@ const fetchMiddleware = store => next => action => {
 		error:false,
 	}))
 
+
 	return fetchs({url, data,method,mode})
 	.then(result => {
 		console.log("fetch----result:",result)
