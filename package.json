@@ -10,7 +10,9 @@
     "dll": "cross-env NODE_ENV=production webpack --config ./build/webpack.dll.config.js",
     "pack": "npm run dll && npm run build && node archive.js",
     "prd": "pm2 start bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "snyk test",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "dependencies": {
     "@antv/data-set": "^0.10.1",
@@ -58,7 +60,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "request": "^2.88.0",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.0.0",
+    "snyk": "^1.108.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -101,5 +104,6 @@
     "webpack-dev-server": "^3.1.9",
     "webpack-hot-middleware": "^2.24.2",
     "webpack-merge": "^4.1.4"
-  }
+  },
+  "snyk": true
 }
