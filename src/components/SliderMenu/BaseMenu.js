@@ -111,7 +111,7 @@ export default class BaseMenu extends Component{
 			.filter(item=>item.name&&!item.hideInMenu)  //不在菜单中显示
 			.map(item=>{
 				const ItemDom = this.getSubMenuOrItem(item,parent);
-				console.log("item:",item,"ItemDom:::::",ItemDom)
+				// console.log("item:",item,"ItemDom:::::",ItemDom)
 				return this.checkPermissionItem(item.authroity,ItemDom)
 			})
 	}

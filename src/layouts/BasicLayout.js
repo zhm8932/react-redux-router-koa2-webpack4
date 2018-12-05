@@ -53,7 +53,7 @@ class BasicLayout extends React.PureComponent{
 	getBreadcrumbNameMap() {
 		const routerMap = {};
 		const mergeMenuAndRouter = data => {
-			console.log("menuItem.data:",data)
+			// console.log("menuItem.data:",data)
 			data.forEach(menuItem => {
 				// console.log("menuItem.children:",menuItem.children,"menuItem::",menuItem)
 				if (menuItem.children) {

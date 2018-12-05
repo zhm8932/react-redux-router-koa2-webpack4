@@ -10,9 +10,8 @@ class GridContent extends PureComponent{
 		const {contentWidth,children,className} = this.props
 		let clsString = classNames('main',{
 			wide:contentWidth==='Fixed'?'wide':'',
-			className:className||''
-		})
-		return <div className={className}>{children}</div>
+		},className)
+		return <div className={clsString}>{children}</div>
 	}
 }
 

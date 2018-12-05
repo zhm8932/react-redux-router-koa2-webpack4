@@ -4,6 +4,11 @@ import Field from './Field'
 import MiniArea from './MiniArea'
 import MiniBar from './MiniBar'
 import MiniProgress from './MiniProgress'
+import Bar from './Bar'
+import Pie from './Pie'
+import TimelineChart from './TimelineChart'
+import Gauge from './Gauge'
+import WaterWave from './WaterWave'
 
 const yuan = val => `￥${numeral(val).format('0,0')}`;
 const Charts = {
@@ -18,5 +23,10 @@ export {
 	Field,
 	MiniArea,
 	MiniBar,
-	MiniProgress
+	MiniProgress,
+	Bar,
+	Pie,
+	TimelineChart,
+	Gauge,
+	WaterWave
 }

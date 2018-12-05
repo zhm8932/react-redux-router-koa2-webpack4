@@ -9,7 +9,39 @@
   }
 
   .salesCard{
-    .ant-tabs-bar{padding-left: $w-md;}
+    .ant-tabs-bar{padding-left: $w-md;
+      .ant-tabs-extra-content{line-height: 55px;padding-right: $w-lg;
+        .currentDate{color: $color-blue-4c7;}
+      }
+    }
+    .salesBar{
+      padding:0 0 32px 32px;
+    }
+    .salesRank{
+      padding: 0 32px 0 72px;
+      .rankingList{
+        margin-top: 25px;
+        li{margin-top: 16px;display: flex;}
+        .rankingItemTitle{flex: 1 1;margin-right: $w-xs;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
+        .rankingItemNumber{
+          width: 20px;height: 20px;line-height: 20px;border-radius: 100%;margin-right: $w-md;display: inline-block;
+          background-color: $color-gray-f6;text-align: center;
+        }
+        .active{background-color: #314659;color: $white;}
+      }
+    }
+    .salesCardExtra{
+      .salesTypeRadio{
+        position: absolute;right: 54px;top: 12px;
+      }
+    }
+
+
+  }
+  .salesExtraWrap{
+    .salesExtra{display: inline-block;margin-right: $w-lg;
+      a{margin-left: $w-lg;}
+    }
   }
 }
 

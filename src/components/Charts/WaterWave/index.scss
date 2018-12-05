@@ -1,0 +1,27 @@
+@import "../../../sass/includes/settings";
+.waterWave {
+  display: inline-block;
+  position: relative;
+  transform-origin: left;
+  .text {
+    position: absolute;
+    left: 0;
+    top: 32px;
+    text-align: center;
+    width: 100%;
+    span {
+      color: $color-gray-c;
+      font-size: 14px;
+      line-height: 22px;
+    }
+    h4 {
+      color: $color-gray-3;
+      line-height: 32px;
+      font-size: 24px;
+    }
+  }
+  .waterWaveCanvasWrapper {
+    transform: scale(0.5);
+    transform-origin: 0 0;
+  }
+}

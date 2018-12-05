@@ -1,0 +1,10 @@
+
+.activeChart{
+  position: relative;
+  .activeChartGrid{
+    p {
+      position: absolute; top:  80px;
+      &:last-child{top: 115px;}
+    }
+  }
+}

@@ -38,6 +38,11 @@ import SecurityView from "../pages/Account/Settings/SecurityView";
 import BindingView from "../pages/Account/Settings/BindingView";
 import NotificationView from "../pages/Account/Settings/NotificationView";
 
+
+//部分应用实例
+import Refs from '../pages/Examples/Refs'
+import Context from '../pages/Examples/Context'
+
 //按需加载
 const lazyLoad = (comp) => (props) => (
 	<Bundle load={comp}>
@@ -159,7 +164,8 @@ export default [
 						exact:true
 					}
 				]
-			},{
+			},
+			{
 				path:'/list',
 				icon:'table',
 				name:'list',
@@ -177,7 +183,8 @@ export default [
 						exact:true
 					}
 				]
-			},{
+			},
+			{
 				path:'/result',
 				icon:'check-circle-o',
 				name:'result',
@@ -195,7 +202,8 @@ export default [
 						exact:true
 					}
 				]
-			},{
+			},
+			{
 				path:'/profile',
 				icon:'profile',
 				name:'profile',
@@ -213,7 +221,8 @@ export default [
 						exact:true
 					}
 				]
-			},,{
+			},
+			{
 				path:'/exception',
 				icon:'exception',
 				name:'exception',
@@ -237,7 +246,8 @@ export default [
 						exact:true
 					}
 				]
-			},{
+			},
+			{
 				path:'/account',
 				icon:'user',
 				name:'account',
@@ -279,6 +289,25 @@ export default [
 								exact:true
 							}
 						]
+					}
+				]
+			},
+			{
+				path:'/example',
+				icon:'read',
+				name:'example',
+				routes:[
+					{
+						path:'/example/refs',
+						name:'refs',
+						component:lazyLoad(Refs),
+						exact:true
+					},
+					{
+						path:'/example/context',
+						name:'context',
+						component:lazyLoad(Context),
+						exact:true
 					}
 				]
 			}

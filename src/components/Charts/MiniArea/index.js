@@ -16,7 +16,7 @@ class MiniArea extends React.PureComponent{
 			color = 'rgba(24, 144, 255, 0.2)',
 			borderColor = '#1089ff',
 			scale = {},
-			borderWidth = {},
+			borderWidth = 2,
 			line,
 			xAxis,
 			yAxis,

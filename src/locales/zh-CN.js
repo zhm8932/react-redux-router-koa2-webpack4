@@ -1,5 +1,7 @@
 // import zhMessages from '../../locales/zh.json';
 
+import Context from "../pages/Examples/Context";
+
 export default {
 	'navbar.lang': 'English',
 	'menu.home': '首页',
@@ -43,6 +45,9 @@ export default {
 	'menu.account.settings.binding': '账号绑定',
 	'menu.account.settings.notification': '新消息通知',
 	'menu.account.trigger': '触发报错',
+	'menu.example': '实例',
+	'menu.example.refs': 'refs',
+	'menu.example.context': 'Context',
 	'app.home.introduce': '介绍',
 	'app.analysis.test': '工专路 {no} 号店',
 	'app.analysis.introduce': '指标说明',

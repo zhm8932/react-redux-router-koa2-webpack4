@@ -47,60 +47,80 @@ for (var _i3 = 0; _i3 < 50; _i3 += 1) {
 	});
 }
 
-var salesTypeData = [{
-	x: 'House appliances',
-	y: 4544
-}, {
-	x: 'Drink & wine',
-	y: 3321
-}, {
-	x: 'Health & care',
-	y: 3113
-}, {
-	x: 'Clothing & bags',
-	y: 2341
-}, {
-	x: 'Mother-baby',
-	y: 1231
-}, {
-	x: 'Other',
-	y: 1231
-}];
-var salesTypeDataOnline = [{
-	x: 'House appliances',
-	y: 244
-}, {
-	x: 'Drink & wine',
-	y: 321
-}, {
-	x: 'Health & care',
-	y: 311
-}, {
-	x: 'Clothing & bags',
-	y: 41
-}, {
-	x: 'Mother-baby',
-	y: 121
-}, {
-	x: 'Other',
-	y: 111
-}];
-var salesTypeDataOffline = [{
-	x: 'House appliances',
-	y: 99
-}, {
-	x: 'Drink & wine',
-	y: 188
-}, {
-	x: 'Health & care',
-	y: 344
-}, {
-	x: 'Clothing & bags',
-	y: 255
-}, {
-	x: 'Other',
-	y: 65
-}];
+const salesTypeData = [
+	{
+		x: '家用电器',
+		y: 4544,
+	},
+	{
+		x: '食用酒水',
+		y: 3321,
+	},
+	{
+		x: '个护健康',
+		y: 3113,
+	},
+	{
+		x: '服饰箱包',
+		y: 2341,
+	},
+	{
+		x: '母婴产品',
+		y: 1231,
+	},
+	{
+		x: '其他',
+		y: 1231,
+	},
+];
+const salesTypeDataOnline = [
+	{
+		x: '家用电器',
+		y: 244,
+	},
+	{
+		x: '食用酒水',
+		y: 321,
+	},
+	{
+		x: '个护健康',
+		y: 311,
+	},
+	{
+		x: '服饰箱包',
+		y: 41,
+	},
+	{
+		x: '母婴产品',
+		y: 121,
+	},
+	{
+		x: '其他',
+		y: 111,
+	},
+];
+const salesTypeDataOffline = [
+	{
+		x: '家用电器',
+		y: 99,
+	},
+	{
+		x: '食用酒水',
+		y: 188,
+	},
+	{
+		x: '个护健康',
+		y: 344,
+	},
+	{
+		x: '服饰箱包',
+		y: 255,
+	},
+	{
+		x: '其他',
+		y: 65,
+	},
+];
 var offlineData = [];
 
 for (var _i4 = 0; _i4 < 10; _i4 += 1) {
