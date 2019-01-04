@@ -162,7 +162,8 @@ export default [
 						name:'advancedform',
 						component:lazyLoad(AdvanceForm),
 						exact:true
-					}
+					},
+					{component:lazyLoad(Exception404)}
 				]
 			},
 			{
@@ -181,7 +182,8 @@ export default [
 						name:'basiclist',
 						component:lazyLoad(BasicList),
 						exact:true
-					}
+					},
+					{component:lazyLoad(Exception404)},
 				]
 			},
 			{
@@ -200,7 +202,8 @@ export default [
 						name:'fail',
 						component:lazyLoad(Error),
 						exact:true
-					}
+					},
+					{component:lazyLoad(Exception404)},
 				]
 			},
 			{
@@ -219,7 +222,8 @@ export default [
 						name:'advanced',
 						component:lazyLoad(AdvancedProfile),
 						exact:true
-					}
+					},
+					{component:lazyLoad(Exception404)}
 				]
 			},
 			{
@@ -244,7 +248,8 @@ export default [
 						name:'server-error',
 						component:lazyLoad(Exception500),
 						exact:true
-					}
+					},
+					{component:lazyLoad(Exception404)}
 				]
 			},
 			{
@@ -289,7 +294,8 @@ export default [
 								exact:true
 							}
 						]
-					}
+					},
+					{component:lazyLoad(Exception404)},
 				]
 			},
 			{
@@ -308,10 +314,11 @@ export default [
 						name:'context',
 						component:lazyLoad(Context),
 						exact:true
-					}
+					},
+					{component:lazyLoad(Exception404)},
 				]
-			}
+			},
+			{component:lazyLoad(Exception404)},
 		]
 	}
-
 ]

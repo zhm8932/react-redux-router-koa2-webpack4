@@ -2,7 +2,6 @@ const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
 const json = require('koa-json')
-const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const koaBody = require('koa-body')
 const favicon = require('koa-favicon');
@@ -23,16 +22,6 @@ const logAccess = logUtil.getLogger('access');
 global.logger = logger;     	//日志
 global.proxys = proxy;       	//封装HTTP请求
 
-// error handler
-// onerror(app);
-
-/*onerror(app, {
-	// all: '',
-	text: 'text',
-	json: 'json',
-	html: 'html',
-	redirect: 'https://www.npmjs.com/package/koa-onerror'
-})*/
 
 // middlewares
 //koaBody必须放在bodyparser前面
@@ -92,39 +81,44 @@ app.use(async (ctx, next)=>{
 		ctx.throw(404, 'Not Found!!!');
 		await next();
 	}else{
+		console.log("渲染首页模板")
 		await ctx.render('app', {
 			title: 'Koa2-React'
 		})
 	}
 })
 
-const handler = async (ctx, next) => {
+
+app.use(async (ctx, next) => {
 	try {
+		console.log("handler:",ctx)
 		await next();
 	} catch (err) {
 		console.log("handler-err:",err)
 		ctx.response.status = err.statusCode || err.status || 500;
-		// ctx.response.body = {
-		ctx.body = {
+		ctx.response.body = {
 			message: err.message||'系统错误！！！'
 		};
+		// 手动释放error事件
+		ctx.app.emit('error', err, ctx);
 	}
-};
-
-app.use(handler);
+});
 
 // error-handling
 app.on('error',async (err, ctx) => {
-	logErrors.error('server err:',JSON.stringify(err));
 	let error = utils.handlerError(err,ctx);
-	// ctx.body = error;
-
+	logErrors.error('server err:',JSON.stringify(error),'ctx:',ctx);
+	logErrors.error('ctx.request:',ctx.request);
+	logErrors.error('ctx.response:',ctx.response);
 	ctx.response.status = err.statusCode || err.status || 500;
-	ctx.body = error
+	// ctx.body = error
+	ctx.response.body = error
 	/*ctx.response.body = {
 		message: err.message,
 		error:error
 	};*/
+
+	logErrors.error('ctx.response2:',ctx.response);
 });
 
 module.exports = app;

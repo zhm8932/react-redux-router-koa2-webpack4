@@ -37,15 +37,15 @@ const fetchMiddleware = store => next => action => {
 
 	return fetchs({url, data,method,mode})
 	.then(result => {
-		console.log("fetch----result:",result)
-		let {data:payload,...otherData} = result;
+		console.log("fetch----result:",typeof result,result)
+		let json = typeof result === 'object' ? result : {result:result}
+		let {data:payload,...otherData} = json;
 		return next(actionWith({
 			type:SUCCESS,
 			loading:false,
 			error:false,
 			...otherData,
 			...payload
-			// payload:result
 		}))
 	})
 	.catch(err => {

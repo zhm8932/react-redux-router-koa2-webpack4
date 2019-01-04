@@ -123,9 +123,9 @@ router.get('/list',function (ctx,next) {
 
 function postRule(ctx) {
 
-	const body = ctx.request.body;
+	const body = Object.keys(ctx.request.body).length? ctx.request.body: ctx.request.query;
 	let {method} = ctx;
-	console.log("postRule---body:",body)
+	console.log("method:",method,"postRule---body:",body,'query',ctx.request.query)
 	const {name, desc, key,createdAt,owner,title} = body;
 
 	method = method.toLocaleLowerCase();
