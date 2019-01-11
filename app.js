@@ -27,6 +27,7 @@ global.proxys = proxy;       	//封装HTTP请求
 //koaBody必须放在bodyparser前面
 app.use(koaBody({
 	multipart: true,
+	strict: false, //默认为true，不解析GET,HEAD,DELETE请求
 	formidable:{
 		// uploadDir: path.join(__dirname, 'public/upload'),
 		keepExtensions:true,
@@ -65,6 +66,12 @@ app.use(async(ctx, next) =>{
 	await next()
 })
 
+app.use(async function (ctx, next) {
+	// 获取客户端请求接受类型
+	let acceptedType = ctx.accepts('html', 'text', 'json');
+	console.log("originalUrl:", ctx.originalUrl,"acceptedType:", acceptedType);
+	await next()
+})
 
 // routes
 app.use(index.routes(), index.allowedMethods());

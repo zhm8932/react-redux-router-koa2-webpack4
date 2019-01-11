@@ -6,37 +6,27 @@ import 'whatwg-fetch'
 export const FETCH_API = Symbol('Fetch API');
 
 const fetchs = ({url,method='GET',mode='',data={}})=>{
-	console.log("fetch:::::url:",url,'method:',method)
-	let params = {};
-	//处理data
-	for(let key in data){
-		if(data[key]){
-			params[key] = data[key]
-		}
-	}
-	console.log("params:",params)
-
+	console.log("fetch:::::url:",url,'method:',method,'data:', data)
 	method = method.toUpperCase();
 	let options = {
 		method,
 		mode:mode,
 		headers:{
-			'Accept': 'application/json',
 			'X-Requested-With':'XMLHttpRequest',  //标记xhr请求
 			'Content-Type': 'application/json',
 			'key':'71d7c958ddaade37861387ee208f2f67'
 		}
 	}
-	if(method==='GET'||method==='DELETE'){
+	if(method==='GET'){
 		let query = '';
-		for (let i in params) {
-			query += `${i}=${params[i]}&`;
+		for (let key in data) {
+			query += `${key}=${data[key]}&`;
 		}
 		url+=`?${query.slice(0,-1)}`
 	}else{
-		options.body = JSON.stringify(params);
+		options.body = JSON.stringify(data);
 	}
-	if(!options.mode){
+	if(!options.mode){ //是否跨域
 		delete  options.mode
 	}
 	console.log('入参options：',options)
