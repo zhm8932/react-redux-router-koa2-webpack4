@@ -50,7 +50,7 @@ exports.handlerError = function (error,ctx) {
 			message = "服务连接异常";
 			break;
 		default:
-			message = error.message || "系统异常,请稍后重试";
+			message = error&&error.message || "系统异常,请稍后重试";
 	}
 	err.message = message;
 	err.success = false;
@@ -70,6 +70,7 @@ exports.handlerError = function (error,ctx) {
 		if(response){
 			err.message = err.message || response.message;
 			err.status  = response.status ||status
+			err.code  = response.status ||status
 		}
 	}
 	logger.warn("err:",JSON.stringify(err))

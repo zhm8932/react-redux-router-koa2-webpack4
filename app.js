@@ -27,7 +27,7 @@ global.proxys = proxy;       	//封装HTTP请求
 //koaBody必须放在bodyparser前面
 app.use(koaBody({
 	multipart: true,
-	strict: false, //默认为true，不解析GET,HEAD,DELETE请求
+	// strict: false, //默认为true，不解析GET,HEAD,DELETE请求
 	formidable:{
 		// uploadDir: path.join(__dirname, 'public/upload'),
 		keepExtensions:true,
@@ -68,8 +68,8 @@ app.use(async(ctx, next) =>{
 
 app.use(async function (ctx, next) {
 	// 获取客户端请求接受类型
-	let acceptedType = ctx.accepts('html', 'text', 'json');
-	console.log("originalUrl:", ctx.originalUrl,"acceptedType:", acceptedType);
+	// let acceptedType = ctx.accepts('html', 'text', 'json');
+	console.log("originalUrl:", ctx.originalUrl);
 	await next()
 })
 
@@ -81,11 +81,17 @@ app.use(charts.routes(), charts.allowedMethods());
 
 app.use(async (ctx, next)=>{
 	console.log("ctx::::::::::::",JSON.stringify(ctx))
-	//处理xhr请求
+	//处理xhr请求 404
 	if (utils.isAjax(ctx.request)) {
 		console.log("AJAX请求！！！")
-		// let error = utils.handlerError(null,ctx);
-		ctx.throw(404, 'Not Found!!!');
+		let error = utils.handlerError(null,ctx);
+		let code = error.status
+		if(code === 404){
+			error.message = '抱歉，您访问的资源不存在'
+		}
+		console.log('errorerror:', error)
+		// ctx.throw(404, 'Not Found!!!');
+		ctx.body = error
 		await next();
 	}else{
 		console.log("渲染首页模板")
@@ -113,19 +119,24 @@ app.use(async (ctx, next) => {
 
 // error-handling
 app.on('error',async (err, ctx) => {
+	// ctx.set("Content-Type", "application/json")
+	// let acceptedType = ctx.accepts('html', 'text', 'json');
 	let error = utils.handlerError(err,ctx);
-	logErrors.error('server err:',JSON.stringify(error),'ctx:',ctx);
-	logErrors.error('ctx.request:',ctx.request);
+	logErrors.error('server err:',JSON.stringify(error));
+	// logErrors.error('ctx.request:',ctx.request);
 	logErrors.error('ctx.response:',ctx.response);
-	ctx.response.status = err.statusCode || err.status || 500;
+	// ctx.response.status = err.statusCode || err.status || 500;
 	// ctx.body = error
-	ctx.response.body = error
+	// ctx.response.body = error
+	ctx.body = {
+		message:'响应成功！！！'
+	}
+	console.log("异常执行完成")
+	// ctx.app.emit('error', err, ctx);
 	/*ctx.response.body = {
 		message: err.message,
 		error:error
 	};*/
-
-	logErrors.error('ctx.response2:',ctx.response);
 });
 
 module.exports = app;

@@ -35,9 +35,13 @@ const fetchs = ({url,method='GET',mode='',data={}})=>{
 		// using .json will report an error.
 		if (response.status === 204) {
 			return response.text();
+		} else if(response.status === 500){
+			let text = response.text()
+			console.log('response-500:', response,text)
+			return text;
 		}
 		let result = response.json()
-		console.log('response:', response, result)
+		console.log('response:', response,'result:', result)
 		return result
 	}).catch(err=>{
 		console.log("request failed:",err)

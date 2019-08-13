@@ -41,6 +41,7 @@ sequentialStart();
 
 const Home =()=>(
 	<div className="wrapper home">
+		
 		<h1>Hello, world Koa 2!</h1>
 		<h1>Hello, world Koa 2!</h1>
 		<h1>Hello, world Koa 2!</h1>
@@ -79,6 +80,7 @@ const Home =()=>(
 		<h1>Hello, world Koa 2!</h1>
 		<h1>Hello, world Koa 2!</h1>d
 		<p>首页</p>
+	 
 	</div>
 );
 

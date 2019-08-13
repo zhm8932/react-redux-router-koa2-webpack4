@@ -42,6 +42,9 @@ import NotificationView from "../pages/Account/Settings/NotificationView";
 //部分应用实例
 import Refs from '../pages/Examples/Refs'
 import Context from '../pages/Examples/Context'
+import ErrorDidCatch from '../pages/Examples/ErrorDidCatch'
+import Portal from '../pages/Examples/Portal'
+import HocDemo from '../pages/Examples/HocDemo'
 
 //按需加载
 const lazyLoad = (comp) => (props) => (
@@ -313,6 +316,24 @@ export default [
 						path:'/example/context',
 						name:'context',
 						component:lazyLoad(Context),
+						exact:true
+					},
+					{
+						path:'/example/errorDidCatch',
+						name:'errorDidCatch',
+						component:lazyLoad(ErrorDidCatch),
+						exact:true
+					},
+					{
+						path:'/example/portal',
+						name:'portal',
+						component:lazyLoad(Portal),
+						exact:true
+					},
+					{
+						path:'/example/hocDemo',
+						name:'HOC',
+						component:lazyLoad(HocDemo),
 						exact:true
 					},
 					{component:lazyLoad(Exception404)},

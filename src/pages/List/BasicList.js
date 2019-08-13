@@ -118,8 +118,10 @@ export default class BasicList extends PureComponent{
 			method:'delete',
 			data:{key:[key]}
 		})).then(json=>{
-			if(!json.error){
+			if(!json.code){
 				message.success('删除成功')
+			}else{
+				message.error(json.message)
 			}
 		})
 	}

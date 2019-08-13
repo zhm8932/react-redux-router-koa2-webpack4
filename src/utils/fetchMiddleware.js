@@ -39,6 +39,12 @@ const fetchMiddleware = store => next => action => {
 	.then(result => {
 		console.log("fetch----result:",typeof result,result)
 		let json = typeof result === 'object' ? result : {result:result}
+		if(result === 'Internal Server Error'){
+			json = {
+				code:500,
+				message:result
+			}
+		}
 		let {data:payload,...otherData} = json;
 		return next(actionWith({
 			type:SUCCESS,

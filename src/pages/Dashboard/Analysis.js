@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {Row,Col,Icon,Card,Tabs,Table,Radio,DatePicker,Tooltip,Menu,Dropdown} from 'antd'
 import {FormattedMessage} from 'react-intl'
 import numeral from 'numeral';
-import GridContent from '../../components/PageHeaderWrapper/GridContent';
 import {ChartCard,Field,MiniArea,MiniBar,MiniProgress,Bar,Pie,TimelineChart} from '../../components/Charts'
+import GridContent from '../../components/PageHeaderWrapper/GridContent';
 import NumberInfo from '../../components/NumberInfo'
 import Yuan from '../../utils/Yuan';
 import Trend from '../../components/Trend'
