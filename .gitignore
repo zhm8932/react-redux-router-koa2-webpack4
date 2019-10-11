@@ -15,6 +15,7 @@ public
 yarn.lock
 
 .git
+.agit
 .idea
 .settings
 *.zip
