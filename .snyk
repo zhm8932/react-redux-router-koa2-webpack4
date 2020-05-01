@@ -1,8 +1,35 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.13.1
+version: v1.14.1
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   'npm:uglify-js:20151024':
     - koa-onerror > swig > uglify-js:
         patched: '2018-11-17T18:21:49.768Z'
+  SNYK-JS-LODASH-567746:
+    - antd > lodash:
+        patched: '2020-05-01T03:33:17.828Z'
+    - async > lodash:
+        patched: '2020-05-01T03:33:17.828Z'
+    - '@antv/data-set > dagre > lodash':
+        patched: '2020-05-01T03:33:17.828Z'
+    - antd > rc-form > lodash:
+        patched: '2020-05-01T03:33:17.828Z'
+    - antd > rc-steps > lodash:
+        patched: '2020-05-01T03:33:17.828Z'
+    - antd > rc-table > lodash:
+        patched: '2020-05-01T03:33:17.828Z'
+    - antd > rc-tabs > lodash:
+        patched: '2020-05-01T03:33:17.828Z'
+    - archiver > async > lodash:
+        patched: '2020-05-01T03:33:17.828Z'
+    - '@antv/data-set > dagre > graphlib > lodash':
+        patched: '2020-05-01T03:33:17.828Z'
+    - antd > rc-editor-mention > rc-editor-core > lodash:
+        patched: '2020-05-01T03:33:17.828Z'
+    - pug > pug-code-gen > constantinople > babel-types > lodash:
+        patched: '2020-05-01T03:33:17.828Z'
+    - pug > pug-filters > constantinople > babel-types > lodash:
+        patched: '2020-05-01T03:33:17.828Z'
+    - pug > pug-code-gen > pug-attrs > constantinople > babel-types > lodash:
+        patched: '2020-05-01T03:33:17.828Z'
