@@ -19,7 +19,7 @@
     "antd": "^3.9.3",
     "archiver": "^3.0.0",
     "async": "^2.6.1",
-    "bizcharts": "^3.2.2",
+    "bizcharts": "^4.0.15",
     "bizcharts-plugin-slider": "^2.1.1-beta.1",
     "blueimp-md5": "^2.10.0",
     "classnames": "^2.2.6",
