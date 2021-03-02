@@ -45,7 +45,7 @@
     "omit.js": "^1.0.0",
     "path-to-regexp": "^2.4.0",
     "prop-types": "^15.6.2",
-    "pug": "^2.0.0-rc.1",
+    "pug": "^3.0.1",
     "qs": "^6.5.2",
     "react": "^16.5.0",
     "react-copy-to-clipboard": "^5.0.1",
